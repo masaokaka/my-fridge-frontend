@@ -1,1 +1,3 @@
 FROM node
+
+WORKDIR /app
