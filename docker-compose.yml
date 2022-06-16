@@ -1,0 +1,15 @@
+version: '3.8'
+services:
+ myfridge:
+   build: 
+     context: . #Dockerfileの場所
+     dockerfile: Dockerfile #Dockerfileの名前
+   volumes:
+     - /Users/masakazutoyoyama/Desktop/myFridgeApp/frontend/src/node_modules
+     - /Users/masakazutoyoyama/Desktop/myFridgeApp/frontend/src/package-lock.json
+     - ./src:/src # ローカルのsrc配下をコンテナ内から読み書き
+   ports:
+     - 3000:3000
+   stdin_open: true
+   tty: true #コンテナが正常終了してもコンテナを継続させる
+   command: npm start
