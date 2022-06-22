@@ -50,6 +50,8 @@ module.exports = {
     'react/jsx-one-expression-per-line': 0,
     // import/export を拡張子の記載なしでも可能にする
     'import/prefer-default-export': 'off',
+    // テンプレートリテラル内に入れられる値を文字列と数値以外も許可する
+    '@typescript-eslint/restrict-template-expressions': 'off',
     // シングルクオートをデフォルトにする
     'prettier/prettier': [
       'error',

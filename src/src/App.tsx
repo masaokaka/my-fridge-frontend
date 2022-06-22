@@ -4,9 +4,15 @@ import './App.css';
 
 function App() {
   axios
-    .get('http://localhost:8080/api/user')
-    .then((res: AxiosResponse) => console.log(res.data))
-    .catch((e: AxiosError) => console.log(e.message));
+    .get('http://localhost:8080/api/user', {
+      headers: {
+        'Content-Type': 'application/json',
+        Accept: 'application/json',
+        Authorization: 'Bearer <token_here>',
+      },
+    })
+    .then((res: AxiosResponse<number[]>) => console.log(`aaaa${res.data}`))
+    .catch((e: AxiosError) => console.log(`bbbb${e.message}`));
   return (
     <div className="App">
       <header className="App-header">
