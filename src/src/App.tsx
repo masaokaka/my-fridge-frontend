@@ -1,7 +1,12 @@
+import axios, { AxiosError, AxiosResponse } from 'axios';
 import { Counter } from './features/counter/Counter';
 import './App.css';
 
 function App() {
+  axios
+    .get('http://localhost:8080/api/user')
+    .then((res: AxiosResponse) => console.log(res.data))
+    .catch((e: AxiosError) => console.log(e.message));
   return (
     <div className="App">
       <header className="App-header">
