@@ -1,18 +1,24 @@
-import axios, { AxiosError, AxiosResponse } from 'axios';
+import { useEffect } from 'react';
+import axios from 'axios';
 import { Counter } from './features/counter/Counter';
 import './App.css';
 
 function App() {
-  axios
-    .get('http://localhost:8080/api/user', {
-      headers: {
-        'Content-Type': 'application/json',
-        Accept: 'application/json',
-        Authorization: 'Bearer <token_here>',
-      },
-    })
-    .then((res: AxiosResponse<number[]>) => console.log(`aaaa${res.data}`))
-    .catch((e: AxiosError) => console.log(`bbbb${e.message}`));
+  const login = async (email: string, password: string) => {
+    await axios.get('http://localhost:8080/sanctum/csrf-cookie', {
+      withCredentials: true,
+    });
+    await axios.post(
+      'http://localhost:8080/login',
+      { email, password },
+      { withCredentials: true }
+    );
+  };
+  useEffect(() => {
+    const result = login('demo3@example.com', 'secret');
+    console.log(result);
+  }, []);
+
   return (
     <div className="App">
       <header className="App-header">
