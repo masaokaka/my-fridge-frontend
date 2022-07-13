@@ -1,0 +1,19 @@
+# ワークフローの名前
+name: CI
+
+# いつこのワークフローを実行するのか
+on: [push, pull_request]
+
+jobs:
+  # ジョブID
+  run_lint_jest:
+    # アクション名（github上で表示)
+    name: Run EsLint and Jest
+    # どの環境でアクションを実行するのか
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: reviewdog/action-eslint@v1
+        with:
+          reporter: github-pr-review # Change reporter.
+          eslint_flags: 'src/src/**/*.{ts,tsx,js,jsx}'
