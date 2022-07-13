@@ -6,9 +6,9 @@ on: [push, pull_request]
 
 jobs:
   # ジョブID
-  run_lint:
+  run_lint_and_test:
     # アクション名（github上で表示)
-    name: Run EsLint
+    name: Run lint and test
     # どの環境でアクションを実行するのか
     runs-on: macos-latest
     steps:
@@ -19,6 +19,10 @@ jobs:
           cd src
           npm ci
       - name: Run EsLint
-        run: npm run lint
+        run: |
+          cd src
+          npm run lint
       - name: Run Jest
-        run: npm run test
+        run: |
+          cd src
+          npm run test
