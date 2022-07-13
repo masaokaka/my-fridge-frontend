@@ -18,6 +18,7 @@ function App() {
   useEffect(() => {
     const result = login('demo3@example.com', 'secret');
     console.log(result);
+    console.log('aaaaa');
   }, []);
 
   return (
