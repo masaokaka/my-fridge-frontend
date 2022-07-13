@@ -6,14 +6,18 @@ on: [push, pull_request]
 
 jobs:
   # ジョブID
-  run_lint_jest:
+  run_lint:
     # アクション名（github上で表示)
-    name: Run EsLint and Jest
+    name: Run EsLint
     # どの環境でアクションを実行するのか
     runs-on: macos-latest
     steps:
-      - uses: actions/checkout@v3
-      - uses: reviewdog/action-eslint@v1
-        with:
-          reporter: github-pr-review # Change reporter.
-          eslint_flags: 'src/src/**/*.{ts,tsx,js,jsx}'
+      - name: Checkout branch
+        uses: actions/checkout@v3
+
+  run_jest:
+    name: Run Jest
+    runs-on: macos-latest
+    steps:
+      - name: Checkout branch
+        uses: actions/checkout@v3
