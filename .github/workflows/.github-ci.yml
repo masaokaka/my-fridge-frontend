@@ -8,21 +8,28 @@ jobs:
   # ジョブID
   run_lint_and_test:
     # アクション名（github上で表示)
-    name: Run lint and test
+    name: リントとテストの実行
     # どの環境でアクションを実行するのか
     runs-on: macos-latest
     steps:
-      - name: Checkout branch
+      # pushしたブランチをチェックアウト
+      - name: ブランチのチェックアウト
         uses: actions/checkout@v3
-      - name: Run npm ci
+      # node16をインストール
+      - name: node version16をインストール
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16
+          cache: npm
+      - name: npm ciを実行
         run: |
           cd src
           npm ci
-      - name: Run EsLint
+      - name: リントを実行
         run: |
           cd src
           npm run lint
-      - name: Run Jest
+      - name: テストを実行
         run: |
           cd src
           npm run test
