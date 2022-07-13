@@ -14,7 +14,11 @@ jobs:
     steps:
       - name: Checkout branch
         uses: actions/checkout@v3
-
+      - name: npm ci and run EsLint
+        run: |
+          cd src
+          npm ci
+          npm run lint
   run_jest:
     name: Run Jest
     runs-on: macos-latest

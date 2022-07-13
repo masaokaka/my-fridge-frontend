@@ -14,10 +14,9 @@ function App() {
       { withCredentials: true }
     );
   };
-  console.log('aaaa
   useEffect(() => {
     const result = login('demo3@example.com', 'secret');
-    console.log(result);
+    console.log(resu
   }, []);
 
   return (
