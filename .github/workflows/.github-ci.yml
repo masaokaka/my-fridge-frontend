@@ -1,0 +1,36 @@
+# ワークフローの名前
+name: CI
+
+# いつこのワークフローを実行するのか
+on: [push, pull_request]
+
+jobs:
+  # ジョブID
+  run_lint_and_test:
+    # アクション名（github上で表示)
+    name: リントとテストの実行
+    # どの環境でアクションを実行するのか
+    runs-on: macos-latest
+    steps:
+      # pushしたブランチをチェックアウト
+      - name: ブランチのチェックアウト
+        uses: actions/checkout@v3
+      # node16をインストール
+      - name: node version16をインストール
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16
+          cache: npm
+          cache-dependency-path: src/package-lock.json
+      - name: npm ciを実行
+        run: |
+          cd src
+          npm ci
+      - name: リントを実行
+        run: |
+          cd src
+          npm run lint
+      - name: テストを実行
+        run: |
+          cd src
+          npm run test
