@@ -4,18 +4,10 @@ module.exports = {
     es2021: true,
   },
   extends: [
-    'react-app',
-    'react-app/jest',
-    'eslint:recommended',
     'airbnb',
-    'plugin:import/errors',
-    'plugin:import/warnings',
-    'plugin:import/typescript',
+    'airbnb-typescript',
     'plugin:@typescript-eslint/recommended',
-    'plugin:@typescript-eslint/recommended-requiring-type-checking',
-    'plugin:react/recommended',
-    'plugin:prettier/recommended',
-    'eslint-config-prettier', // 他の設定を上書くために最後に入れる
+    'prettier',
   ],
   parser: '@typescript-eslint/parser',
   parserOptions: {
@@ -26,7 +18,7 @@ module.exports = {
     ecmaVersion: 'latest',
     sourceType: 'module',
   },
-  plugins: ['react', '@typescript-eslint', 'import'],
+  plugins: ['import'],
   rules: {
     '@typescript-eslint/no-use-before-define': ['error'],
     'react/jsx-filename-extension': ['error', { extensions: ['.jsx', '.tsx'] }],
