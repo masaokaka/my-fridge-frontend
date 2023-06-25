@@ -1,4 +1,4 @@
-src/serviceWorker.ts
-src/reportWebVitals.ts
-/.eslintrc.js
-node_modules/
+assets
+test
+.drawio
+.eslintrc.js

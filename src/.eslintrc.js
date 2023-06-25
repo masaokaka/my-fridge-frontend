@@ -21,6 +21,10 @@ module.exports = {
   },
   plugins: ['import'],
   rules: {
+    'react/function-component-definition': [
+      2,
+      { namedComponents: 'arrow-function' },
+    ],
     '@typescript-eslint/no-use-before-define': ['error'],
     'react/jsx-filename-extension': ['error', { extensions: ['.jsx', '.tsx'] }],
     'import/extensions': [
