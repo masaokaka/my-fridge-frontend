@@ -19,7 +19,7 @@ module.exports = {
     ecmaVersion: 'latest',
     sourceType: 'module',
   },
-  plugins: ['import'],
+  plugins: ['import', 'prettier'],
   rules: {
     'react/function-component-definition': [
       2,
