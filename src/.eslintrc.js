@@ -19,7 +19,7 @@ module.exports = {
     ecmaVersion: 'latest',
     sourceType: 'module',
   },
-  plugins: ['import', 'prettier'],
+  plugins: ['import'],
   rules: {
     'react/function-component-definition': [
       2,
@@ -49,13 +49,6 @@ module.exports = {
     'import/prefer-default-export': 'off',
     // テンプレートリテラル内に入れられる値を文字列と数値以外も許可する
     '@typescript-eslint/restrict-template-expressions': 'off',
-    // シングルクオートをデフォルトにする
-    'prettier/prettier': [
-      'error',
-      {
-        singleQuote: true,
-      },
-    ],
     // 使われていない変数にエラーを出す
     '@typescript-eslint/no-unused-vars': 'error',
   },
