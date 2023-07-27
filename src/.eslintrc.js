@@ -51,6 +51,9 @@ module.exports = {
     '@typescript-eslint/restrict-template-expressions': 'off',
     // 使われていない変数にエラーを出す
     '@typescript-eslint/no-unused-vars': 'error',
+    // オプショナルパラメータを設定した際にデフォルト値を入れるルールをオフ
+    'react/require-default-props': 'off',
+    'react/jsx-props-no-spreading': 'off',
   },
   settings: {
     'import/resolver': {
