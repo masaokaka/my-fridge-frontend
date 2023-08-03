@@ -1,4 +1,4 @@
-import { ReactNode, useState } from 'react';
+import { useState } from 'react';
 import {
   Box,
   Drawer,
@@ -8,20 +8,37 @@ import {
   ListItemButton,
   ListItemIcon,
   ListItemText,
-  Toolbar,
   styled,
 } from '@mui/material';
-import { ChevronLeft, ChevronRight } from '@mui/icons-material';
+import {
+  CalendarMonth,
+  ChevronLeft,
+  ChevronRight,
+  EditCalendar,
+  Home,
+  Kitchen,
+  LocalDining,
+  Logout,
+  List as ListIcon,
+  MenuBook,
+  Notifications,
+  Person,
+  SetMeal,
+  ControlPoint,
+} from '@mui/icons-material';
 import { DRAWER_WIDTH, closedMixin, openedMixin } from './hooks';
 
-type Props = {
-  children: ReactNode;
+type MenuType = {
+  title: string;
+  icon: JSX.Element;
+  path: string;
 };
 
 /** Drawerスタイル */
 const FridgeDrawer = styled(Drawer)(({ theme, open }) => ({
   width: DRAWER_WIDTH,
   flexShrink: 0,
+  whiteSpace: 'nowrap',
   boxSizing: 'border-box',
   // 開いた時のスタイル追加
   ...(open && {
@@ -42,13 +59,77 @@ const DrawerHeader = styled('div')(({ theme }) => ({
   paddingLeft: theme.spacing(1),
 }));
 
+/** サイドメニュー項目 */
+const SIDE_MENU_ITEMS: MenuType[] = [
+  {
+    title: 'Home',
+    icon: <Home />,
+    path: '',
+  },
+  {
+    title: 'お知らせ',
+    icon: <Notifications />,
+    path: '',
+  },
+  {
+    title: '所持食材一覧',
+    icon: <Kitchen />,
+    path: '',
+  },
+  {
+    title: '食材登録',
+    icon: <ControlPoint />,
+    path: '',
+  },
+  {
+    title: '食材セット一覧',
+    icon: <ListIcon />,
+    path: '',
+  },
+  {
+    title: '食材セット登録',
+    icon: <SetMeal />,
+    path: '',
+  },
+  {
+    title: 'レシピ一覧',
+    icon: <MenuBook />,
+    path: '',
+  },
+  {
+    title: 'Myレシピ登録',
+    icon: <LocalDining />,
+    path: '',
+  },
+  {
+    title: '献立表',
+    icon: <CalendarMonth />,
+    path: '',
+  },
+  {
+    title: '献立登録',
+    icon: <EditCalendar />,
+    path: '',
+  },
+  {
+    title: 'アカウント',
+    icon: <Person />,
+    path: '',
+  },
+  {
+    title: 'ログアウト',
+    icon: <Logout />,
+    path: '',
+  },
+];
+
 /**
  * サイドメニューコンポーネント
  *
  * @param children メインコンテンツ
  * @returns コンポーネント
  */
-const SideMenuLayout = ({ children }: Props) => {
+const SideMenuLayout = () => {
   const [open, setOpen] = useState(true);
   return (
     <Box sx={{ display: 'flex' }}>
@@ -58,23 +139,17 @@ const SideMenuLayout = ({ children }: Props) => {
             {open ? <ChevronLeft /> : <ChevronRight />}
           </IconButton>
         </DrawerHeader>
-        <Toolbar />
         <List>
-          {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text) => (
-            <ListItem key={text} disablePadding>
+          {SIDE_MENU_ITEMS.map((item) => (
+            <ListItem key={item.title} disablePadding>
               <ListItemButton>
-                <ListItemIcon>
-                  {/* {index % 2 === 0 ? <InboxIcon /> : <MailIcon />} */}
-                </ListItemIcon>
-                <ListItemText primary={text} />
+                <ListItemIcon>{item.icon}</ListItemIcon>
+                <ListItemText primary={item.title} />
               </ListItemButton>
             </ListItem>
           ))}
         </List>
       </FridgeDrawer>
-      <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
-        {children}
-      </Box>
     </Box>
   );
 };
