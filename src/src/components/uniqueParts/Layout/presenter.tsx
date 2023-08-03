@@ -13,12 +13,17 @@ const sideNavWidth = 230;
 const Layout = ({ children }: Props) => (
   <Box display="flex">
     {/* サイドナビがここ */}
-    <Box width={sideNavWidth}>サイドナビ</Box>
-    <Box sx={{ width: `calc(100% - ${sideNavWidth}px)` }}>
+    <Box width={sideNavWidth} sx={{ display: { sm: 'block', xs: 'none' } }}>
+      サイドナビ
+    </Box>
+    <Box sx={{ width: { sm: `calc(100% - ${sideNavWidth}px)`, xs: '100%' } }}>
       <Header />
       <Container
         sx={{
-          minHeight: `calc(100vh - ${headerHeight + footerHeight}px)`,
+          minHeight: {
+            sm: `calc(100vh - ${headerHeight + footerHeight.pc}px)`,
+            xs: `calc(100vh - ${headerHeight + footerHeight.mobile}px)`,
+          },
           // TODO: 後で消す
           outline: 'solid 1px black',
         }}
