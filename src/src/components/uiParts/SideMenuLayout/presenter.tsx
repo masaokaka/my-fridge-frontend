@@ -27,6 +27,7 @@ import {
   ControlPoint,
 } from '@mui/icons-material';
 import { DRAWER_WIDTH, closedMixin, openedMixin } from './hooks';
+import { WHITE_COLOR } from '../../../style';
 
 type MenuType = {
   title: string;
@@ -135,16 +136,28 @@ const SideMenuLayout = () => {
     <Box sx={{ display: 'flex' }}>
       <FridgeDrawer variant="permanent" open={open}>
         <DrawerHeader>
-          <IconButton onClick={() => setOpen((isOpen) => !isOpen)}>
+          <IconButton
+            onClick={() => setOpen((isOpen) => !isOpen)}
+            sx={{ color: WHITE_COLOR }}
+          >
             {open ? <ChevronLeft /> : <ChevronRight />}
           </IconButton>
         </DrawerHeader>
         <List>
           {SIDE_MENU_ITEMS.map((item) => (
             <ListItem key={item.title} disablePadding>
-              <ListItemButton>
-                <ListItemIcon>{item.icon}</ListItemIcon>
-                <ListItemText primary={item.title} />
+              <ListItemButton
+                sx={{
+                  borderBottom: `1px solid ${WHITE_COLOR}`,
+                }}
+              >
+                <ListItemIcon sx={{ color: WHITE_COLOR }}>
+                  {item.icon}
+                </ListItemIcon>
+                <ListItemText
+                  primary={item.title}
+                  sx={{ color: WHITE_COLOR }}
+                />
               </ListItemButton>
             </ListItem>
           ))}
