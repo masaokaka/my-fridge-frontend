@@ -46,11 +46,14 @@ const StyledHeader = styled(AppBar)(({ theme }) => ({
 }));
 
 type Props = {
+  /** 冷蔵庫名 */
   fridgeName: string;
+  /** お知らせ数 */
+  notificationsCount: number;
 };
 
 /** ヘッダー */
-const Header = ({ fridgeName }: Props) => (
+const Header = ({ fridgeName, notificationsCount }: Props) => (
   <StyledHeader position="sticky" elevation={0}>
     <Container sx={{ height: '100%' }}>
       <Toolbar disableGutters sx={{ height: '100%' }}>
@@ -69,7 +72,7 @@ const Header = ({ fridgeName }: Props) => (
             <AccountCircle />
           </IconButton>
           <IconButton size="large" color="inherit">
-            <Badge badgeContent={17} color="error">
+            <Badge badgeContent={notificationsCount} color="error">
               <Notifications />
             </Badge>
           </IconButton>

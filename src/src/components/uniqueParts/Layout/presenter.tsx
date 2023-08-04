@@ -17,15 +17,13 @@ const Layout = ({ children }: Props) => (
       サイドナビ
     </Box>
     <Box sx={{ width: { sm: `calc(100% - ${sideNavWidth}px)`, xs: '100%' } }}>
-      <Header />
+      <Header fridgeName="田中" notificationsCount={25} />
       <Container
         sx={{
           minHeight: {
             sm: `calc(100vh - ${headerHeight.pc + footerHeight.pc}px)`,
             xs: `calc(100vh - ${headerHeight.mobile + footerHeight.mobile}px)`,
           },
-          // TODO: 後で消す
-          outline: 'solid 1px black',
         }}
       >
         {children}
