@@ -3,7 +3,7 @@ import { CustomButton } from '../../uiParts/CustomButton';
 
 const Home = () => (
   <Box>
-    <Typography variant="h2">メインコンテンツ</Typography>
+    <Typography variant="h1">メインコンテンツ</Typography>
     <CustomButton>Aaaaa</CustomButton>
   </Box>
 );

@@ -1,6 +1,6 @@
 import { Box, styled } from '@mui/material';
 
-export const footerHeight = { pc: 127, mobile: 50 };
+export const footerHeight = { pc: 80, mobile: 50 };
 
 const StyledFooter = styled(Box)(({ theme }) => ({
   [theme.breakpoints.up('sm')]: {

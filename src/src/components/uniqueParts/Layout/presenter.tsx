@@ -8,7 +8,7 @@ type Props = {
   children: React.ReactNode;
 };
 
-const sideNavWidth = 230;
+export const sideNavWidth = 230;
 
 const Layout = ({ children }: Props) => (
   <Box display="flex">
@@ -21,8 +21,8 @@ const Layout = ({ children }: Props) => (
       <Container
         sx={{
           minHeight: {
-            sm: `calc(100vh - ${headerHeight + footerHeight.pc}px)`,
-            xs: `calc(100vh - ${headerHeight + footerHeight.mobile}px)`,
+            sm: `calc(100vh - ${headerHeight.pc + footerHeight.pc}px)`,
+            xs: `calc(100vh - ${headerHeight.mobile + footerHeight.mobile}px)`,
           },
           // TODO: 後で消す
           outline: 'solid 1px black',
