@@ -143,12 +143,14 @@ const SideMenuLayout = () => {
             {open ? <ChevronLeft /> : <ChevronRight />}
           </IconButton>
         </DrawerHeader>
+
         <List>
           {SIDE_MENU_ITEMS.map((item) => (
             <ListItem key={item.title} disablePadding>
               <ListItemButton
                 sx={{
-                  borderBottom: `1px solid ${WHITE_COLOR}`,
+                  borderBottom: open ? `1px solid ${WHITE_COLOR}` : 'none',
+                  margin: open ? '0 8px' : 'auto',
                 }}
               >
                 <ListItemIcon sx={{ color: WHITE_COLOR }}>
