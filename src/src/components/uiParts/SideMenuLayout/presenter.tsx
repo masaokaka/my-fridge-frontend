@@ -26,6 +26,7 @@ import {
   SetMeal,
   ControlPoint,
 } from '@mui/icons-material';
+import { NavLink } from 'react-router-dom';
 import { DRAWER_WIDTH, closedMixin, openedMixin } from './hooks';
 import { WHITE_COLOR } from '../../../style';
 
@@ -65,12 +66,12 @@ const SIDE_MENU_ITEMS: MenuType[] = [
   {
     title: 'Home',
     icon: <Home />,
-    path: '',
+    path: '/',
   },
   {
     title: 'お知らせ',
     icon: <Notifications />,
-    path: '',
+    path: '/test',
   },
   {
     title: '所持食材一覧',
@@ -146,22 +147,28 @@ const SideMenuLayout = () => {
 
         <List>
           {SIDE_MENU_ITEMS.map((item) => (
-            <ListItem key={item.title} disablePadding>
-              <ListItemButton
-                sx={{
-                  borderBottom: open ? `1px solid ${WHITE_COLOR}` : 'none',
-                  margin: open ? '0 8px' : 'auto',
-                }}
-              >
-                <ListItemIcon sx={{ color: WHITE_COLOR }}>
-                  {item.icon}
-                </ListItemIcon>
-                <ListItemText
-                  primary={item.title}
-                  sx={{ color: WHITE_COLOR }}
-                />
-              </ListItemButton>
-            </ListItem>
+            <NavLink
+              key={item.title}
+              to={item.path}
+              style={({ isActive }) => ({
+                color: isActive ? '#FFE89A' : WHITE_COLOR,
+                textDecoration: 'none',
+              })}
+            >
+              <ListItem disablePadding>
+                <ListItemButton
+                  sx={{
+                    borderBottom: open ? `1px solid ${WHITE_COLOR}` : 'none',
+                    margin: open ? '0 8px' : 'auto',
+                  }}
+                >
+                  <ListItemIcon sx={{ color: 'unset' }}>
+                    {item.icon}
+                  </ListItemIcon>
+                  <ListItemText primary={item.title} />
+                </ListItemButton>
+              </ListItem>
+            </NavLink>
           ))}
         </List>
       </FridgeDrawer>
