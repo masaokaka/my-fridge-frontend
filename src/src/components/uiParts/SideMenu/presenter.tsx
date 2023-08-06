@@ -128,20 +128,19 @@ const SIDE_MENU_ITEMS: MenuType[] = [
 /**
  * サイドメニューコンポーネント
  *
- * @param children メインコンテンツ
  * @returns コンポーネント
  */
 const SideMenuLayout = () => {
-  const [open, setOpen] = useState(true);
+  const [isOpen, setIsOpen] = useState(true);
   return (
     <Box sx={{ display: 'flex' }}>
-      <FridgeDrawer variant="permanent" open={open}>
+      <FridgeDrawer variant="permanent" open={isOpen}>
         <DrawerHeader>
           <IconButton
-            onClick={() => setOpen((isOpen) => !isOpen)}
+            onClick={() => setIsOpen((open) => !open)}
             sx={{ color: WHITE_COLOR }}
           >
-            {open ? <ChevronLeft /> : <ChevronRight />}
+            {isOpen ? <ChevronLeft /> : <ChevronRight />}
           </IconButton>
         </DrawerHeader>
 
@@ -158,8 +157,8 @@ const SideMenuLayout = () => {
               <ListItem disablePadding>
                 <ListItemButton
                   sx={{
-                    borderBottom: open ? `1px solid ${WHITE_COLOR}` : 'none',
-                    margin: open ? '0 8px' : 'auto',
+                    borderBottom: isOpen ? `1px solid ${WHITE_COLOR}` : 'none',
+                    margin: isOpen ? '0 8px' : 'auto',
                   }}
                 >
                   <ListItemIcon sx={{ color: 'unset' }}>
