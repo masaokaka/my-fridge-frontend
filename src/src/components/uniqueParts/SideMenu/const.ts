@@ -4,7 +4,6 @@ import {
   EditCalendar,
   Kitchen,
   LocalDining,
-  Logout,
   List,
   MenuBook,
   Notifications,
@@ -83,10 +82,5 @@ export const SIDE_MENU_ITEMS: MenuType[] = [
     title: 'アカウント',
     icon: Person,
     path: ACCOUNT_PATH,
-  },
-  {
-    title: 'ログアウト',
-    icon: Logout,
-    path: '',
   },
 ];

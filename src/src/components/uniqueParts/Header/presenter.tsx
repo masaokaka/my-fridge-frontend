@@ -17,7 +17,7 @@ import {
 import { useNavigate } from 'react-router-dom';
 import { BASE_COLOR } from '../../../style';
 import logo from '../../../assets/logo.png';
-import { ACCOUNT_PATH } from '../../../const';
+import { ACCOUNT_PATH, NEWS_PATH } from '../../../const';
 
 export const headerHeight = { pc: 80, mobile: 56 };
 
@@ -67,7 +67,7 @@ const Header = ({ fridgeName, notificationsCount }: Props) => {
           </Typography>
           <Box sx={{ flexGrow: 1 }} />
           <Box sx={{ display: { xs: 'block', sm: 'none' } }}>
-            <IconButton color="inherit" onClick={() => navigate(ACCOUNT_PATH)}>
+            <IconButton color="inherit">
               <Menu />
             </IconButton>
           </Box>
@@ -75,14 +75,14 @@ const Header = ({ fridgeName, notificationsCount }: Props) => {
             <IconButton
               size="large"
               color="inherit"
-              // onClick={}
+              onClick={() => navigate(ACCOUNT_PATH)}
             >
               <AccountCircle />
             </IconButton>
             <IconButton
               size="large"
               color="inherit"
-              // onClick={}
+              onClick={() => navigate(NEWS_PATH)}
             >
               <Badge badgeContent={notificationsCount} color="error">
                 <Notifications />

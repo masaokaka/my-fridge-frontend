@@ -65,43 +65,21 @@ const SideMenuLayout = ({ isOpen, openDrawer, closeDrawer }: Props) => (
       </DrawerHeader>
 
       <List>
-        {SIDE_MENU_ITEMS.map((item) =>
-          item.title !== 'ログアウト' ? (
-            <NavLink
-              key={item.title}
-              to={item.path}
-              style={({ isActive }) => ({
-                color: isActive ? '#FFE89A' : WHITE_COLOR,
-                textDecoration: 'none',
-              })}
-            >
-              <ListItem disablePadding>
-                <ListItemButton
-                  sx={{
-                    borderBottom: isOpen ? `1px solid ${WHITE_COLOR}` : 'none',
-                    margin: isOpen ? '0 8px' : 'auto',
-                  }}
-                >
-                  <ListItemIcon sx={{ color: 'unset' }}>
-                    <item.icon />
-                  </ListItemIcon>
-                  <ListItemText primary={item.title} />
-                </ListItemButton>
-              </ListItem>
-            </NavLink>
-          ) : (
-            <ListItem
-              disablePadding
-              sx={{
-                color: WHITE_COLOR,
-              }}
-            >
+        {SIDE_MENU_ITEMS.map((item) => (
+          <NavLink
+            key={item.title}
+            to={item.path}
+            style={({ isActive }) => ({
+              color: isActive ? '#FFE89A' : WHITE_COLOR,
+              textDecoration: 'none',
+            })}
+          >
+            <ListItem disablePadding>
               <ListItemButton
                 sx={{
                   borderBottom: isOpen ? `1px solid ${WHITE_COLOR}` : 'none',
                   margin: isOpen ? '0 8px' : 'auto',
                 }}
-                onClick={() => {}}
               >
                 <ListItemIcon sx={{ color: 'unset' }}>
                   <item.icon />
@@ -109,8 +87,8 @@ const SideMenuLayout = ({ isOpen, openDrawer, closeDrawer }: Props) => (
                 <ListItemText primary={item.title} />
               </ListItemButton>
             </ListItem>
-          )
-        )}
+          </NavLink>
+        ))}
       </List>
     </FridgeDrawer>
   </Box>
