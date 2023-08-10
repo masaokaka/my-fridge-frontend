@@ -14,8 +14,10 @@ import {
   Logout,
   Menu,
 } from '@mui/icons-material';
+import { useNavigate } from 'react-router-dom';
 import { BASE_COLOR } from '../../../style';
 import logo from '../../../assets/logo.png';
+import { ACCOUNT_PAGE_PATH } from '../../../const';
 
 export const headerHeight = { pc: 80, mobile: 56 };
 
@@ -53,35 +55,49 @@ type Props = {
 };
 
 /** ヘッダー */
-const Header = ({ fridgeName, notificationsCount }: Props) => (
-  <StyledHeader position="sticky" elevation={0}>
-    <Container sx={{ height: '100%' }}>
-      <Toolbar disableGutters sx={{ height: '100%' }}>
-        <Logo />
-        <Typography fontWeight="bold" ml={2} fontSize={{ xs: 14, sm: 20 }}>
-          {fridgeName}の冷蔵庫
-        </Typography>
-        <Box sx={{ flexGrow: 1 }} />
-        <Box sx={{ display: { xs: 'block', sm: 'none' } }}>
-          <IconButton color="inherit">
-            <Menu />
-          </IconButton>
-        </Box>
-        <Box sx={{ display: { xs: 'none', sm: 'flex' } }}>
-          <IconButton size="large" color="inherit">
-            <AccountCircle />
-          </IconButton>
-          <IconButton size="large" color="inherit">
-            <Badge badgeContent={notificationsCount} color="error">
-              <Notifications />
-            </Badge>
-          </IconButton>
-          <IconButton size="large" edge="end" color="inherit">
-            <Logout />
-          </IconButton>
-        </Box>
-      </Toolbar>
-    </Container>
-  </StyledHeader>
-);
+const Header = ({ fridgeName, notificationsCount }: Props) => {
+  const navigate = useNavigate();
+  return (
+    <StyledHeader position="sticky" elevation={0}>
+      <Container sx={{ height: '100%' }}>
+        <Toolbar disableGutters sx={{ height: '100%' }}>
+          <Logo />
+          <Typography fontWeight="bold" ml={2} fontSize={{ xs: 14, sm: 20 }}>
+            {fridgeName}の冷蔵庫
+          </Typography>
+          <Box sx={{ flexGrow: 1 }} />
+          <Box sx={{ display: { xs: 'block', sm: 'none' } }}>
+            <IconButton
+              color="inherit"
+              onClick={() => navigate(ACCOUNT_PAGE_PATH)}
+            >
+              <Menu />
+            </IconButton>
+          </Box>
+          <Box sx={{ display: { xs: 'none', sm: 'flex' } }}>
+            <IconButton
+              size="large"
+              color="inherit"
+              // onClick={}
+            >
+              <AccountCircle />
+            </IconButton>
+            <IconButton
+              size="large"
+              color="inherit"
+              // onClick={}
+            >
+              <Badge badgeContent={notificationsCount} color="error">
+                <Notifications />
+              </Badge>
+            </IconButton>
+            <IconButton size="large" edge="end" color="inherit">
+              <Logout />
+            </IconButton>
+          </Box>
+        </Toolbar>
+      </Container>
+    </StyledHeader>
+  );
+};
 export default Header;
