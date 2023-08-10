@@ -9,3 +9,6 @@ export const ADD_MY_RECIPE_PATH = '/add_my_recipe';
 export const MENU_PATH = '/menu';
 export const ADD_MENU_PATH = '/add_menu';
 export const ACCOUNT_PATH = '/account';
+
+export const SIDE_MENU_WIDTH = 250;
+export const CLOSED_SIDE_MENU_WIDTH = 65;

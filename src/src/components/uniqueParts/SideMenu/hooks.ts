@@ -1,8 +1,6 @@
 import { CSSObject, Theme } from '@mui/material';
 import { MAIN_COLOR } from '../../../style';
-
-/** サイドメニューの横幅 */
-export const DRAWER_WIDTH = 240;
+import { SIDE_MENU_WIDTH } from '../../../const';
 
 /**
  * 開いた時のスタイル指定を返却する関数
@@ -12,9 +10,8 @@ export const DRAWER_WIDTH = 240;
  * @return CSSオブジェクト
  */
 export const openedMixin = (theme: Theme): CSSObject => ({
-  width: DRAWER_WIDTH,
+  width: SIDE_MENU_WIDTH,
   backgroundColor: MAIN_COLOR,
-  boxShadow: '8px 8px 0px #0000001A',
   transition: theme.transitions.create('width', {
     easing: theme.transitions.easing.sharp,
     duration: theme.transitions.duration.enteringScreen,
@@ -31,7 +28,6 @@ export const openedMixin = (theme: Theme): CSSObject => ({
  */
 export const closedMixin = (theme: Theme): CSSObject => ({
   backgroundColor: MAIN_COLOR,
-  boxShadow: '8px 8px 0px #0000001A',
   transition: theme.transitions.create('width', {
     easing: theme.transitions.easing.sharp,
     duration: theme.transitions.duration.leavingScreen,
