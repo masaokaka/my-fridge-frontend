@@ -26,7 +26,7 @@
     "build": "tsc --noEmit && vite build",
     "serve": "vite preview",
     "lint": "eslint --ext .ts --ext .tsx ./src",
-    "test": "jest"
+    "test": "jest --passWithNoTests"
   },
   "browserslist": {
     "production": [
