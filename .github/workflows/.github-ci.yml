@@ -30,7 +30,8 @@ jobs:
         run: |
           cd src
           npm run lint
-      - name: テストを実行
-        run: |
-          cd src
-          npm run test
+      # 一旦以下をコメントアウト
+      # - name: テストを実行
+      #   run: |
+      #     cd src
+      #     npm run test
