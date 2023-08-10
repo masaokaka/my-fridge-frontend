@@ -1,6 +1,6 @@
 import { Box, Typography } from '@mui/material';
 import { CustomButton } from '../../uiParts/CustomButton';
-import { SideMenu } from '../../uiParts/SideMenu';
+import { SideMenu } from '../../uniqueParts/SideMenu';
 
 const Home = () => (
   <Box>
