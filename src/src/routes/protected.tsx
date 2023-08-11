@@ -4,6 +4,7 @@ import { Navigate, Outlet } from 'react-router-dom';
 // import { Spinner } from '@/components/Elements';
 import { CircularProgress } from '@mui/material';
 import { Home } from '../components/pages/Home';
+import { Layout } from '../components/uniqueParts/Layout';
 // import { MainLayout } from '@/components/Layout';
 // import { lazyImport } from '@/utils/lazyImport';
 
@@ -16,17 +17,17 @@ import { Home } from '../components/pages/Home';
 // const { Users } = lazyImport(() => import('@/features/users'), 'Users');
 
 const App = () => (
-  // <MainLayout>
-  <Suspense
-    fallback={
-      <div className="h-full w-full flex items-center justify-center">
-        <CircularProgress />
-      </div>
-    }
-  >
-    <Outlet />
-  </Suspense>
-  // </MainLayout>
+  <Layout>
+    <Suspense
+      fallback={
+        <div className="h-full w-full flex items-center justify-center">
+          <CircularProgress />
+        </div>
+      }
+    >
+      <Outlet />
+    </Suspense>
+  </Layout>
 );
 
 export const protectedRoutes = [
