@@ -17,9 +17,12 @@ import {
 import { useNavigate } from 'react-router-dom';
 import { BASE_COLOR } from '../../../style';
 import logo from '../../../assets/logo.png';
-import { ACCOUNT_PATH, NEWS_PATH } from '../../../const';
-
-export const headerHeight = { pc: 80, mobile: 56 };
+import {
+  ACCOUNT_PATH,
+  HEADER_HEIGHT_MOBILE,
+  HEADER_HEIGHT_PC,
+  NEWS_PATH,
+} from '../../../const';
 
 /** ロゴ */
 const Logo = () => (
@@ -42,9 +45,9 @@ const Logo = () => (
 
 const StyledHeader = styled(AppBar)(({ theme }) => ({
   [theme.breakpoints.up('sm')]: {
-    height: headerHeight.pc,
+    height: HEADER_HEIGHT_PC,
   },
-  height: headerHeight.mobile,
+  height: HEADER_HEIGHT_MOBILE,
 }));
 
 type Props = {
