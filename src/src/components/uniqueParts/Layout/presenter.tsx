@@ -20,7 +20,7 @@ type Props = {
 
 const LayoutWrapper = styled(Box)(({ theme }) => ({
   [theme.breakpoints.up('sm')]: {
-    paddingBottom: 'none',
+    paddingBottom: 0,
   },
   display: 'flex',
   paddingBottom: BOTTOM_NAV_HEIGHT,
