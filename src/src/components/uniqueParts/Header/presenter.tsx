@@ -43,7 +43,9 @@ const Logo = () => (
 const StyledHeader = styled(AppBar)(({ theme }) => ({
   [theme.breakpoints.up('sm')]: {
     height: headerHeight.pc,
+    position: 'sticky',
   },
+  position: 'fixed',
   height: headerHeight.mobile,
 }));
 
@@ -58,7 +60,7 @@ type Props = {
 const Header = ({ fridgeName, notificationsCount }: Props) => {
   const navigate = useNavigate();
   return (
-    <StyledHeader position="sticky" elevation={0}>
+    <StyledHeader elevation={0}>
       <Container sx={{ height: '100%' }}>
         <Toolbar disableGutters sx={{ height: '100%' }}>
           <Logo />
