@@ -3,3 +3,5 @@ test
 setupTests.ts
 .drawio
 .eslintrc.js
+service-worker.ts
+serviceWorkerRegistration.ts
