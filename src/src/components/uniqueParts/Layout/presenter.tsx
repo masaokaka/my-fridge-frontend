@@ -60,11 +60,10 @@ const Layout = ({ children }: Props) => {
         <Header fridgeName="田中" notificationsCount={25} />
         <Container
           sx={{
+            pt: { xs: `${HEADER_HEIGHT_MOBILE}px` },
             minHeight: {
               sm: `calc(100vh - ${HEADER_HEIGHT_PC + FOOTER_HEIGHT_PC}px)`,
-              xs: `calc(100vh - ${
-                HEADER_HEIGHT_MOBILE + FOOTER_HEIGHT_MOBILE
-              }px)`,
+              xs: `calc(100vh - ${FOOTER_HEIGHT_MOBILE}px)`,
             },
           }}
         >
