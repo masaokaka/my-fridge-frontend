@@ -3,7 +3,7 @@ import { ReactNode, Suspense } from 'react';
 import { Provider } from 'react-redux';
 import { Button, CircularProgress, ThemeProvider } from '@mui/material';
 import { QueryClientProvider } from '@tanstack/react-query';
-import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
+// import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { BrowserRouter as Router } from 'react-router-dom';
 import { HelmetProvider } from 'react-helmet-async';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -48,7 +48,7 @@ export const AppProvider = ({ children }: AppProviderProps) => (
         <ErrorBoundary FallbackComponent={ErrorFallback}>
           <HelmetProvider>
             <QueryClientProvider client={queryClient}>
-              {import.meta.env.DEV && <ReactQueryDevtools />}
+              {/* {import.meta.env.DEV && <ReactQueryDevtools />} */}
               {/* <Notifications /> */}
               {/* <AuthProvider> */}
               <Router>{children}</Router>

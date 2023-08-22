@@ -12,3 +12,8 @@ export const ACCOUNT_PATH = '/account';
 
 export const SIDE_MENU_WIDTH = 250;
 export const CLOSED_SIDE_MENU_WIDTH = 65;
+export const HEADER_HEIGHT_PC = 80;
+export const HEADER_HEIGHT_MOBILE = 56;
+export const FOOTER_HEIGHT_PC = 80;
+export const FOOTER_HEIGHT_MOBILE = 50;
+export const BOTTOM_NAV_HEIGHT = 80;
