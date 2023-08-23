@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react';
+import { useMemo } from 'react';
 import { Box, Container, styled } from '@mui/material';
 import { Header } from '../Header';
 import { Footer } from '../Footer';
@@ -13,6 +13,7 @@ import {
 } from '../../../const';
 import { SideMenu } from '../SideMenu';
 import { BottomNavBar } from '../BottomNavBar';
+import { useToggle } from '../../../utils/useToggle';
 
 type Props = {
   children: React.ReactNode;
@@ -27,37 +28,43 @@ const LayoutWrapper = styled(Box)(({ theme }) => ({
 }));
 
 const Layout = ({ children }: Props) => {
-  const [isOpen, setIsOpen] = useState(true);
-  const openDrawer = () => setIsOpen(true);
-  const closeDrawer = () => setIsOpen(false);
-  const sidebarWidth = useMemo(
-    () => (isOpen ? SIDE_MENU_WIDTH : CLOSED_SIDE_MENU_WIDTH),
-    [isOpen]
+  /** PC画面用のサイドメニュー開閉フラグ */
+  const drawerPCSize = useToggle(true);
+  /**  タブレット以下のサイドメニュー開閉フラグ */
+  const drawerTabletSize = useToggle(false);
+
+  const sideMenuWidth = useMemo(
+    () => (drawerPCSize.isOpen ? SIDE_MENU_WIDTH : CLOSED_SIDE_MENU_WIDTH),
+    [drawerPCSize]
   );
   return (
     <LayoutWrapper display="flex">
       {/* サイドナビがここ */}
       <Box sx={{ display: { sm: 'block', xs: 'none' } }}>
         <SideMenu
-          isOpen={isOpen}
-          openDrawer={openDrawer}
-          closeDrawer={closeDrawer}
+          isOpen={drawerPCSize.isOpen}
+          openDrawer={drawerPCSize.open}
+          closeDrawer={drawerPCSize.close}
         />
       </Box>
       <Box
         sx={(theme) => ({
-          width: { sm: `calc(100% - ${sidebarWidth}px)`, xs: '100%' },
+          width: { sm: `calc(100% - ${sideMenuWidth}px)`, xs: '100%' },
           transition: {
             sm: theme.transitions.create('width', {
               easing: theme.transitions.easing.sharp,
-              duration: isOpen
+              duration: drawerPCSize.isOpen
                 ? theme.transitions.duration.enteringScreen
                 : theme.transitions.duration.leavingScreen,
             }),
           },
         })}
       >
-        <Header fridgeName="田中" notificationsCount={25} />
+        <Header
+          fridgeName="田中"
+          notificationsCount={25}
+          drawerTabletSize={drawerTabletSize}
+        />
         <Container
           sx={{
             pt: { xs: `${HEADER_HEIGHT_MOBILE}px` },
