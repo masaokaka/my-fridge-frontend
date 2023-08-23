@@ -41,6 +41,7 @@ const BottomNavBar = memo(() => {
           const isActive = location.pathname === item.path;
           return (
             <StyledBottomNavigationAction
+              key={item.label}
               label={item.label}
               icon={<item.icon />}
               sx={{ color: isActive ? '#FFE89A' : WHITE_COLOR }}
