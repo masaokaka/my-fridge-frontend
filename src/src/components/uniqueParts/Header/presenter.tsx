@@ -64,7 +64,7 @@ const Header = ({ fridgeName, notificationsCount }: Props) => {
       <Container sx={{ height: '100%' }}>
         <Toolbar disableGutters sx={{ height: '100%' }}>
           <Logo />
-          <Typography fontWeight="bold" ml={2} fontSize={{ xs: 14, sm: 20 }}>
+          <Typography fontWeight="bold" ml={2} fontSize={{ xs: 16, sm: 20 }}>
             {fridgeName}の冷蔵庫
           </Typography>
           <Box sx={{ flexGrow: 1 }} />
