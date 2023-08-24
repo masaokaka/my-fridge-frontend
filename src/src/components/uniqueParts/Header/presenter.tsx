@@ -79,15 +79,7 @@ const Header = ({
           </Typography>
           <Box sx={{ flexGrow: 1 }} />
           <Box sx={{ display: { xs: 'block', sm: 'none' } }}>
-            <IconButton
-              color="inherit"
-              onClick={() => {
-                if (drawerTabletSize.isOpen) {
-                  return drawerTabletSize.close();
-                }
-                return drawerTabletSize.open();
-              }}
-            >
+            <IconButton color="inherit" onClick={() => drawerTabletSize.open()}>
               <Menu />
             </IconButton>
           </Box>
