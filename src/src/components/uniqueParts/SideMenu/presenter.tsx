@@ -14,7 +14,11 @@ import { NavLink } from 'react-router-dom';
 import { closedMixin, openedMixin } from './hooks';
 import { WHITE_COLOR } from '../../../style';
 import { SIDE_MENU_ITEMS } from './const';
-import { SIDE_MENU_WIDTH } from '../../../const';
+import {
+  HEADER_HEIGHT_MOBILE,
+  HEADER_HEIGHT_PC,
+  SIDE_MENU_WIDTH,
+} from '../../../const';
 
 /** Drawerスタイル */
 const FridgeDrawer = styled(Drawer)(({ theme, open }) => ({
@@ -39,6 +43,10 @@ const DrawerHeader = styled('div')(({ theme }) => ({
   display: 'flex',
   alignItems: 'center',
   paddingLeft: theme.spacing(1),
+  height: HEADER_HEIGHT_MOBILE,
+  [theme.breakpoints.up('sm')]: {
+    height: HEADER_HEIGHT_PC,
+  },
 }));
 
 type Props = {
@@ -63,7 +71,6 @@ const SideMenuLayout = ({ isOpen, openDrawer, closeDrawer }: Props) => (
           {isOpen ? <ChevronLeft /> : <ChevronRight />}
         </IconButton>
       </DrawerHeader>
-
       <List>
         {SIDE_MENU_ITEMS.map((item) => (
           <NavLink
@@ -79,7 +86,7 @@ const SideMenuLayout = ({ isOpen, openDrawer, closeDrawer }: Props) => (
                 <ListItemIcon sx={{ color: 'unset' }}>
                   <item.icon />
                 </ListItemIcon>
-                <ListItemText primary={item.title} />
+                <ListItemText primary={item.title} sx={{ borderRadius: 4 }} />
               </ListItemButton>
             </ListItem>
           </NavLink>
