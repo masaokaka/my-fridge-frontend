@@ -22,6 +22,7 @@ type Props = {
 /** Drawerスタイル */
 const FridgeDrawer = styled(Drawer)(() => ({
   '& .MuiDrawer-paper': {
+    width: '100%',
     backgroundColor: MAIN_COLOR,
   },
 }));
@@ -41,7 +42,7 @@ const DrawerHeader = styled('div')(({ theme }) => ({
 const SideMenuTablet = ({ drawerTabletSize }: Props) => {
   const { isOpen, close } = drawerTabletSize;
   return (
-    <FridgeDrawer open={isOpen} anchor="top">
+    <FridgeDrawer open={isOpen}>
       <DrawerHeader>
         <IconButton onClick={() => close()} sx={{ color: WHITE_COLOR }}>
           <Close />
