@@ -8,7 +8,7 @@ import {
   ListItemText,
   styled,
 } from '@mui/material';
-import { Close } from '@mui/icons-material';
+import { Close, Logout } from '@mui/icons-material';
 import { NavLink } from 'react-router-dom';
 import { UseToggleType } from '../../../utils/useToggle';
 import { SIDE_MENU_ITEMS } from '../SideMenu/const';
@@ -68,6 +68,21 @@ const SideMenuTablet = ({ drawerTabletSize }: Props) => {
             </ListItem>
           </NavLink>
         ))}
+        {/* ログアウト部分 */}
+        <ListItem
+          style={{ color: WHITE_COLOR }}
+          onClick={() => {
+            // TODO: ログアウト処理の実装
+            close();
+          }}
+        >
+          <ListItemButton sx={{ flexGrow: 'unset', marginRight: '8px' }}>
+            <ListItemIcon sx={{ color: 'unset', minWidth: 'unset' }}>
+              <Logout />
+            </ListItemIcon>
+          </ListItemButton>
+          <ListItemText primary="ログアウト" />
+        </ListItem>
       </List>
     </FridgeDrawer>
   );
