@@ -48,7 +48,7 @@ type Props = {
 };
 
 /**
- * サイドメニューコンポーネント
+ * PCのサイドメニューコンポーネント
  *
  * @returns コンポーネント
  */
@@ -75,12 +75,7 @@ const SideMenuLayout = ({ isOpen, openDrawer, closeDrawer }: Props) => (
             })}
           >
             <ListItem disablePadding>
-              <ListItemButton
-                sx={{
-                  borderBottom: isOpen ? `1px solid ${WHITE_COLOR}` : 'none',
-                  margin: isOpen ? '0 8px' : 'auto',
-                }}
-              >
+              <ListItemButton sx={{ margin: isOpen ? '0 8px' : 'auto' }}>
                 <ListItemIcon sx={{ color: 'unset' }}>
                   <item.icon />
                 </ListItemIcon>
