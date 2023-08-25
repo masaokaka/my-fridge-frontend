@@ -23,6 +23,7 @@ import {
   HEADER_HEIGHT_PC,
   NEWS_PATH,
 } from '../../../const';
+import { UseToggleType } from '../../../utils/useToggle';
 
 /** ロゴ */
 const Logo = () => (
@@ -57,10 +58,16 @@ type Props = {
   fridgeName: string;
   /** お知らせ数 */
   notificationsCount: number;
+  /** タブレット用サイドメニュー開閉 */
+  drawerTabletSize: UseToggleType;
 };
 
 /** ヘッダー */
-const Header = ({ fridgeName, notificationsCount }: Props) => {
+const Header = ({
+  fridgeName,
+  notificationsCount,
+  drawerTabletSize,
+}: Props) => {
   const navigate = useNavigate();
   return (
     <StyledHeader elevation={0}>
@@ -72,7 +79,7 @@ const Header = ({ fridgeName, notificationsCount }: Props) => {
           </Typography>
           <Box sx={{ flexGrow: 1 }} />
           <Box sx={{ display: { xs: 'block', sm: 'none' } }}>
-            <IconButton color="inherit">
+            <IconButton color="inherit" onClick={() => drawerTabletSize.open()}>
               <Menu />
             </IconButton>
           </Box>
