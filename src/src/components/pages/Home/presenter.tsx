@@ -13,7 +13,9 @@ const Home = () => (
     <Typography variant="h1">メインコンテンツ</Typography>
     <Typography variant="h1">メインコンテンツ</Typography>
     <Typography variant="h1">メインコンテンツ</Typography>
-    <CustomButton text="献立登録" icon={<CalendarMonth />} />
+    <CustomButton startIcon={<CalendarMonth />} variant="contained">
+      献立登録
+    </CustomButton>
   </Box>
 );
 export default Home;

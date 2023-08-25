@@ -1,18 +1,6 @@
-import { Button, styled } from '@mui/material';
-import { MouseEventHandler, ReactNode } from 'react';
+import { Button, ButtonProps, styled } from '@mui/material';
 
-type Props = {
-  /** アイコン */
-  icon?: ReactNode;
-  /** タイプ */
-  type?: 'outlined' | 'contained';
-  /** 非活性フラグ */
-  disabled?: boolean;
-  /** クリック時処理 */
-  onClick?: MouseEventHandler<HTMLButtonElement>;
-  /** テキスト */
-  text: string;
-};
+type Props = ButtonProps;
 
 const StyledButton = styled(Button)(({ theme }) => ({
   borderRadius: 24,
@@ -33,27 +21,26 @@ const StyledButton = styled(Button)(({ theme }) => ({
   },
 }));
 /** 共通ボタン
- * @param icon アイコン
- * @param text テキスト
- * @param type タイプ
+ * @param startIcon アイコン
+ * @param variant ボタンUIの種類
  * @param onClick クリック時処理
  * @param disabled 非活性フラグ
  */
 const CustomButton = ({
-  text,
-  icon,
+  startIcon,
   disabled,
   onClick,
-  type = 'contained',
+  variant,
+  children,
 }: Props) => (
   <StyledButton
-    variant={type}
+    variant={variant}
     color="secondary"
-    startIcon={icon}
+    startIcon={startIcon}
     onClick={onClick}
     disabled={disabled}
   >
-    {text}
+    {children}
   </StyledButton>
 );
 
