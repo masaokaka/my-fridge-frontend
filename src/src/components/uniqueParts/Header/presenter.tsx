@@ -17,9 +17,13 @@ import {
 import { useNavigate } from 'react-router-dom';
 import { BASE_COLOR } from '../../../style';
 import logo from '../../../assets/logo.png';
-import { ACCOUNT_PATH, NEWS_PATH } from '../../../const';
-
-export const headerHeight = { pc: 80, mobile: 56 };
+import {
+  ACCOUNT_PATH,
+  HEADER_HEIGHT_MOBILE,
+  HEADER_HEIGHT_PC,
+  NEWS_PATH,
+} from '../../../const';
+import { UseToggleType } from '../../../utils/useToggle';
 
 /** ロゴ */
 const Logo = () => (
@@ -42,11 +46,11 @@ const Logo = () => (
 
 const StyledHeader = styled(AppBar)(({ theme }) => ({
   [theme.breakpoints.up('sm')]: {
-    height: headerHeight.pc,
+    height: HEADER_HEIGHT_PC,
     position: 'sticky',
   },
+  height: HEADER_HEIGHT_MOBILE,
   position: 'fixed',
-  height: headerHeight.mobile,
 }));
 
 type Props = {
@@ -54,10 +58,16 @@ type Props = {
   fridgeName: string;
   /** お知らせ数 */
   notificationsCount: number;
+  /** タブレット用サイドメニュー開閉 */
+  drawerTabletSize: UseToggleType;
 };
 
 /** ヘッダー */
-const Header = ({ fridgeName, notificationsCount }: Props) => {
+const Header = ({
+  fridgeName,
+  notificationsCount,
+  drawerTabletSize,
+}: Props) => {
   const navigate = useNavigate();
   return (
     <StyledHeader elevation={0}>
@@ -69,7 +79,7 @@ const Header = ({ fridgeName, notificationsCount }: Props) => {
           </Typography>
           <Box sx={{ flexGrow: 1 }} />
           <Box sx={{ display: { xs: 'block', sm: 'none' } }}>
-            <IconButton color="inherit">
+            <IconButton color="inherit" onClick={() => drawerTabletSize.open()}>
               <Menu />
             </IconButton>
           </Box>

@@ -1,62 +1,89 @@
-import { useMemo, useState } from 'react';
-import { Box, Container } from '@mui/material';
+import { useMemo } from 'react';
+import { Box, Container, styled } from '@mui/material';
 import { Header } from '../Header';
 import { Footer } from '../Footer';
-import { headerHeight } from '../Header/presenter';
-import { footerHeight } from '../Footer/presenter';
-import { CLOSED_SIDE_MENU_WIDTH, SIDE_MENU_WIDTH } from '../../../const';
+import {
+  BOTTOM_NAV_HEIGHT,
+  CLOSED_SIDE_MENU_WIDTH,
+  FOOTER_HEIGHT_MOBILE,
+  FOOTER_HEIGHT_PC,
+  HEADER_HEIGHT_MOBILE,
+  HEADER_HEIGHT_PC,
+  SIDE_MENU_WIDTH,
+} from '../../../const';
 import { SideMenu } from '../SideMenu';
+import { BottomNavBar } from '../BottomNavBar';
+import { useToggle } from '../../../utils/useToggle';
+import { SideMenuTablet } from '../SideMenuTablet';
 
 type Props = {
   children: React.ReactNode;
 };
 
+const LayoutWrapper = styled(Box)(({ theme }) => ({
+  [theme.breakpoints.up('sm')]: {
+    paddingBottom: 0,
+  },
+  display: 'flex',
+  paddingBottom: BOTTOM_NAV_HEIGHT,
+}));
+
 const Layout = ({ children }: Props) => {
-  const [isOpen, setIsOpen] = useState(true);
-  const openDrawer = () => setIsOpen(true);
-  const closeDrawer = () => setIsOpen(false);
-  const sidebarWidth = useMemo(
-    () => (isOpen ? SIDE_MENU_WIDTH : CLOSED_SIDE_MENU_WIDTH),
-    [isOpen]
+  /** PC画面用のサイドメニュー開閉フラグ */
+  const drawerPCSize = useToggle(true);
+  /**  タブレット以下のサイドメニュー開閉フラグ */
+  const drawerTabletSize = useToggle(false);
+
+  const sideMenuWidth = useMemo(
+    () => (drawerPCSize.isOpen ? SIDE_MENU_WIDTH : CLOSED_SIDE_MENU_WIDTH),
+    [drawerPCSize]
   );
   return (
-    <Box display="flex">
-      {/* サイドナビがここ */}
-      <Box sx={{ display: { sm: 'block', xs: 'none' } }}>
-        <SideMenu
-          isOpen={isOpen}
-          openDrawer={openDrawer}
-          closeDrawer={closeDrawer}
-        />
-      </Box>
-      <Box
-        sx={(theme) => ({
-          width: { sm: `calc(100% - ${sidebarWidth}px)`, xs: '100%' },
-          transition: {
-            sm: theme.transitions.create('width', {
-              easing: theme.transitions.easing.sharp,
-              duration: isOpen
-                ? theme.transitions.duration.enteringScreen
-                : theme.transitions.duration.leavingScreen,
-            }),
-          },
-        })}
-      >
-        <Header fridgeName="田中" notificationsCount={25} />
-        <Container
-          sx={{
-            pt: { xs: `${headerHeight.mobile}px` },
-            minHeight: {
-              sm: `calc(100vh - ${headerHeight.pc + footerHeight.pc}px)`,
-              xs: `calc(100vh - ${footerHeight.mobile}px)`,
+    <>
+      <LayoutWrapper display="flex">
+        {/* サイドナビがここ */}
+        <Box sx={{ display: { sm: 'block', xs: 'none' } }}>
+          <SideMenu
+            isOpen={drawerPCSize.isOpen}
+            openDrawer={drawerPCSize.open}
+            closeDrawer={drawerPCSize.close}
+          />
+        </Box>
+        <Box
+          sx={(theme) => ({
+            width: { sm: `calc(100% - ${sideMenuWidth}px)`, xs: '100%' },
+            transition: {
+              sm: theme.transitions.create('width', {
+                easing: theme.transitions.easing.sharp,
+                duration: drawerPCSize.isOpen
+                  ? theme.transitions.duration.enteringScreen
+                  : theme.transitions.duration.leavingScreen,
+              }),
             },
-          }}
+          })}
         >
-          {children}
-        </Container>
-        <Footer />
-      </Box>
-    </Box>
+          <Header
+            fridgeName="田中"
+            notificationsCount={25}
+            drawerTabletSize={drawerTabletSize}
+          />
+          <Container
+            sx={{
+              pt: { xs: `${HEADER_HEIGHT_MOBILE}px` },
+              minHeight: {
+                sm: `calc(100vh - ${HEADER_HEIGHT_PC + FOOTER_HEIGHT_PC}px)`,
+                xs: `calc(100vh - ${FOOTER_HEIGHT_MOBILE}px)`,
+              },
+            }}
+          >
+            {children}
+          </Container>
+          <Footer />
+          <BottomNavBar />
+        </Box>
+      </LayoutWrapper>
+      <SideMenuTablet drawerTabletSize={drawerTabletSize} />
+    </>
   );
 };
 export default Layout;

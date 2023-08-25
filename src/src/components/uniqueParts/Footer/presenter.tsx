@@ -1,13 +1,12 @@
 import { Box, styled } from '@mui/material';
-
-export const footerHeight = { pc: 80, mobile: 50 };
+import { FOOTER_HEIGHT_MOBILE, FOOTER_HEIGHT_PC } from '../../../const';
 
 const StyledFooter = styled(Box)(({ theme }) => ({
   [theme.breakpoints.up('sm')]: {
-    height: footerHeight.pc,
+    height: FOOTER_HEIGHT_PC,
     fontSize: 14,
   },
-  height: footerHeight.mobile,
+  height: FOOTER_HEIGHT_MOBILE,
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
