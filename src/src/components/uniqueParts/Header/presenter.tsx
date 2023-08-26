@@ -14,7 +14,7 @@ import {
   Logout,
   Menu,
 } from '@mui/icons-material';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { BASE_COLOR } from '../../../style';
 import logo from '../../../assets/logo.png';
 import {
@@ -27,21 +27,23 @@ import { UseToggleType } from '../../../utils/useToggle';
 
 /** ロゴ */
 const Logo = () => (
-  <Box
-    sx={{
-      backgroundColor: BASE_COLOR,
-      borderRadius: 2,
-      height: { sm: 60, xs: 40 },
-      width: { sm: 60, xs: 40 },
-    }}
-  >
+  <Link to="/">
     <Box
-      component="img"
-      alt="ロゴ"
-      src={logo}
-      sx={{ height: { sm: 60, xs: 40 }, width: { sm: 60, xs: 40 } }}
-    />
-  </Box>
+      sx={{
+        backgroundColor: BASE_COLOR,
+        borderRadius: 2,
+        height: { sm: 60, xs: 40 },
+        width: { sm: 60, xs: 40 },
+      }}
+    >
+      <Box
+        component="img"
+        alt="ロゴ"
+        src={logo}
+        sx={{ height: { sm: 60, xs: 40 }, width: { sm: 60, xs: 40 } }}
+      />
+    </Box>
+  </Link>
 );
 
 const StyledHeader = styled(AppBar)(({ theme }) => ({
