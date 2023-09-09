@@ -9,10 +9,11 @@ export const AppRoutes = () => {
   // const auth = useAuth();
 
   //   const commonRoutes = [{ path: '/', element: <Landing /> }];
+  // TODO: 認証処理実装後に修正する
+  const isAuthorized = false;
+  const routes = isAuthorized ? protectedRoutes : publicRoutes;
 
-  // const routes = auth.user ? protectedRoutes : publicRoutes;
-
-  const element = useRoutes([...publicRoutes, ...protectedRoutes]);
+  const element = useRoutes([...routes]);
 
   return element;
 };

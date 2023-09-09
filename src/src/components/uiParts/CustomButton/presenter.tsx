@@ -32,10 +32,11 @@ const CustomButton = ({
   onClick,
   variant,
   children,
+  color = 'secondary',
 }: Props) => (
   <StyledButton
     variant={variant}
-    color="secondary"
+    color={color}
     startIcon={startIcon}
     onClick={onClick}
     disabled={disabled}

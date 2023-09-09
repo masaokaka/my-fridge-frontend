@@ -41,7 +41,6 @@ const Layout = ({ children }: Props) => {
   return (
     <>
       <LayoutWrapper display="flex">
-        {/* サイドナビがここ */}
         <Box sx={{ display: { sm: 'block', xs: 'none' } }}>
           <SideMenu
             isOpen={drawerPCSize.isOpen}

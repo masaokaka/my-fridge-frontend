@@ -17,3 +17,5 @@ export const HEADER_HEIGHT_MOBILE = 56;
 export const FOOTER_HEIGHT_PC = 80;
 export const FOOTER_HEIGHT_MOBILE = 50;
 export const BOTTOM_NAV_HEIGHT = 80;
+export const PUBLIC_HEADER_HEIGHT_PC = 100;
+export const PUBLIC_HEADER_HEIGHT_MOBILE = 80;
