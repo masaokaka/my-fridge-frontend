@@ -69,7 +69,7 @@ const Layout = ({ children }: Props) => {
           <Container
             sx={{
               pt: { xs: `${HEADER_HEIGHT_MOBILE}px`, sm: 0 },
-              minHeight: {
+              height: {
                 sm: `calc(100vh - ${HEADER_HEIGHT_PC + FOOTER_HEIGHT_PC}px)`,
                 xs: `calc(100vh - ${FOOTER_HEIGHT_MOBILE}px)`,
               },

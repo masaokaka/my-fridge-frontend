@@ -46,7 +46,7 @@ const PublicLayout = ({ children }: Props) => (
       <Container
         sx={{
           pt: { xs: `${PUBLIC_HEADER_HEIGHT_MOBILE}px`, sm: 0 },
-          minHeight: {
+          height: {
             sm: `calc(100vh - ${PUBLIC_HEADER_HEIGHT_PC + FOOTER_HEIGHT_PC}px)`,
             xs: `calc(100vh - ${FOOTER_HEIGHT_MOBILE}px)`,
           },
