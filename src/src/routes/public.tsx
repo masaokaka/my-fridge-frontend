@@ -4,9 +4,9 @@ import { Outlet } from 'react-router';
 import { PublicLayout } from '../components/uniqueParts/PublicLayout';
 import { lazyImport } from '../utils/lazyImport';
 
-const { Register } = lazyImport(
-  () => import('../components/pages/Register'),
-  'Register'
+const { RegisterUser } = lazyImport(
+  () => import('../components/pages/RegisterUser'),
+  'RegisterUser'
 );
 const { ResetPassword } = lazyImport(
   () => import('../components/pages/ResetPassword'),
@@ -38,7 +38,7 @@ export const publicRoutes = [
     children: [
       {
         path: 'register',
-        element: <Register />,
+        element: <RegisterUser />,
       },
       {
         path: 'password',
