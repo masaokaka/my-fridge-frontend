@@ -28,6 +28,7 @@ const StyledButton = styled(Button)(({ theme }) => ({
  */
 const CustomButton = ({
   startIcon,
+  color = 'secondary',
   disabled,
   onClick,
   variant,
@@ -35,7 +36,7 @@ const CustomButton = ({
 }: Props) => (
   <StyledButton
     variant={variant}
-    color="secondary"
+    color={color}
     startIcon={startIcon}
     onClick={onClick}
     disabled={disabled}
