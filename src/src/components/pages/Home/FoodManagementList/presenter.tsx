@@ -66,7 +66,7 @@ const FoodManagementListPresenter = () => {
         onChange={() => handleChange(isOpen, open, close)}
       >
         <AccordionSummary expandIcon={<ExpandMore />}>
-          <Typography>食材管理</Typography>
+          <Typography marginLeft={2}>食材管理</Typography>
         </AccordionSummary>
         <AccordionDetails>
           <Divider />
