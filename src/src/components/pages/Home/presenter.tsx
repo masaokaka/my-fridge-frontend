@@ -2,6 +2,7 @@ import { Box } from '@mui/material';
 import { ControlPoint, Kitchen } from '@mui/icons-material';
 import { CustomButton } from '../../uiParts/CustomButton';
 import { FoodManagementList } from './FoodManagementList';
+import { FoodHandling } from './FoodHandling';
 
 /**
  * ホーム画面
@@ -32,8 +33,13 @@ const Home = () => (
     </Box>
 
     {/* 食材管理リスト */}
-    <Box paddingTop={4}>
+    <Box marginTop={4}>
       <FoodManagementList />
+    </Box>
+
+    {/* 食材を使う */}
+    <Box marginTop={4}>
+      <FoodHandling />
     </Box>
   </Box>
 );
