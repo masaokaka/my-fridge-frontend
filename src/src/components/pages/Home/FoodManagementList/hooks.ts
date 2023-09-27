@@ -39,9 +39,9 @@ export const selectColor = (level: 1 | 2 | 3): string => {
 };
 
 /**
- * 表示する食品リストを作成するカスタムフック
+ * 表示する食材管理リストを作成するカスタムフック
  *
- * @param foodList 全体の食品管理リスト
+ * @param foodList 全体の食材管理リスト
  *
  * @returns
  */
