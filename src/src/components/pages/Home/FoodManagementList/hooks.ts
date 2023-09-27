@@ -1,5 +1,6 @@
 import { useCallback, useMemo, useState } from 'react';
 import { FoodManagement } from './types';
+import { ACCENT_COLOR, ERROR_COLOR, MAIN_COLOR } from '../../../../style';
 
 /**
  * アコーディオン開閉関数
@@ -18,6 +19,23 @@ export const handleChange = (
     return;
   }
   open();
+};
+
+/**
+ * アイコンカラーを選択する関数
+ *
+ * @param レベル 1: 低, 2: 中, 3: 高
+ *
+ * @returns カラーコード
+ */
+export const selectColor = (level: 1 | 2 | 3): string => {
+  if (level === 1) {
+    return MAIN_COLOR;
+  }
+  if (level === 2) {
+    return ACCENT_COLOR;
+  }
+  return ERROR_COLOR;
 };
 
 /**

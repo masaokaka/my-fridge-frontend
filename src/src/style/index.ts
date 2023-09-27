@@ -5,6 +5,7 @@ export const MAIN_COLOR = '#9CBB1C';
 export const ACCENT_COLOR = '#EF7D3C';
 export const TEXT_COLOR = '#333';
 export const WHITE_COLOR = '#fff';
+export const ERROR_COLOR = 'd32f2f';
 
 export const theme = createTheme({
   typography: {
