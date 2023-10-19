@@ -1,3 +1,4 @@
+import { ReactNode } from 'react';
 import {
   Control,
   Controller,
@@ -31,7 +32,7 @@ type Props = {
   showPassword: (param: 'password' | 'confirmationPassword') => void;
 };
 
-const FormLabelText = ({ children }) => (
+const FormLabelText = ({ children }: { children: ReactNode }) => (
   <Typography ml={2} fontSize={14} fontWeight="bold">
     {children}
   </Typography>
