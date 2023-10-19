@@ -33,8 +33,10 @@ const CustomButton = ({
   variant,
   children,
   color = 'secondary',
+  type,
 }: Props) => (
   <StyledButton
+    type={type}
     variant={variant}
     color={color}
     startIcon={startIcon}

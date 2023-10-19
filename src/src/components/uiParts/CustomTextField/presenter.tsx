@@ -11,7 +11,6 @@ import { WHITE_COLOR } from '../../../style';
 type Props = TextFieldProps & {
   type?: HTMLInputTypeAttribute;
   icon?: ReactNode;
-  onClickIcon?: () => void;
 };
 
 const StyledTextField = styled(TextField)(({ theme }) => ({
@@ -34,24 +33,27 @@ const CustomTextField = ({
   disabled,
   onChange,
   icon,
-  onClickIcon,
+  helperText,
+  error,
+  placeholder,
+  size,
 }: Props) => (
   <StyledTextField
+    size={size}
     type={type}
     label={label}
     InputProps={{
       sx: { borderRadius: 10, px: 1 },
-      endAdornment: (
-        <InputAdornment position="start">
-          <IconButton onClick={onClickIcon}>{icon}</IconButton>
-        </InputAdornment>
-      ),
+      endAdornment: <InputAdornment position="start">{icon}</InputAdornment>,
     }}
+    placeholder={placeholder}
     variant="outlined"
     color="secondary"
     disabled={disabled}
     onChange={onChange}
     fullWidth
+    error={error}
+    helperText={helperText}
   />
 );
 

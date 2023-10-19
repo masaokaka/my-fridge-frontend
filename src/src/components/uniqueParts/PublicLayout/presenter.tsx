@@ -50,6 +50,9 @@ const PublicLayout = ({ children }: Props) => (
             sm: `calc(100vh - ${PUBLIC_HEADER_HEIGHT_PC + FOOTER_HEIGHT_PC}px)`,
             xs: `calc(100vh - ${FOOTER_HEIGHT_MOBILE}px)`,
           },
+          display: 'flex',
+          minHeight: '550px',
+          justifyContent: 'center',
         }}
       >
         {children}

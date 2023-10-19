@@ -1,1 +1,1 @@
-export { default as RegisterUser } from './presenter';
+export { default as RegisterUser } from './container';
