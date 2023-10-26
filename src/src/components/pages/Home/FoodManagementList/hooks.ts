@@ -80,7 +80,8 @@ export const useCreateFoodDisplayList = (
   const [displayList, setDisplayList] = useState<FoodManagement[]>([]);
 
   useEffect(() => {
-    setDisplayList(foodList.slice(0, INITIAL_LENGTH));
+    if (foodList.length === 0) return undefined;
+    return setDisplayList(foodList.slice(0, INITIAL_LENGTH));
   }, [foodList]);
 
   /** 「もっと見る」の表示フラグ */
