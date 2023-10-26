@@ -8,47 +8,12 @@ import {
   Typography,
 } from '@mui/material';
 import { useToggle } from '../../../../utils/useToggle';
-import { handleChange, selectColor, useCreateFoodDisplayList } from './hooks';
-import { FoodManagement } from './types';
-
-const mockData: FoodManagement[] = [
-  {
-    id: 1,
-    level: 2,
-    date: '2021/12/04',
-    message: '醤油の残量が4/1以下です。',
-  },
-  {
-    id: 2,
-    level: 1,
-    date: '2021/12/05',
-    message: '息子がキャベツ、白菜、豚肉を追加しました。',
-  },
-  {
-    id: 3,
-    level: 3,
-    date: '2021/12/06',
-    message: '納豆の賞味期限が切れています。',
-  },
-  {
-    id: 4,
-    level: 2,
-    date: '2021/12/04',
-    message: '醤油の残量が4/1以下です。',
-  },
-  {
-    id: 5,
-    level: 1,
-    date: '2021/12/05',
-    message: '息子がキャベツ、白菜、豚肉を追加しました。',
-  },
-  {
-    id: 6,
-    level: 3,
-    date: '2021/12/06',
-    message: '納豆の賞味期限が切れています。',
-  },
-];
+import {
+  handleChange,
+  selectColor,
+  useCreateFoodDisplayList,
+  useFetchFootManagementList,
+} from './hooks';
 
 /**
  * 食材管理リスト
@@ -57,8 +22,15 @@ const mockData: FoodManagement[] = [
  */
 const FoodManagementListPresenter = () => {
   const { isOpen, open, close } = useToggle(true);
+  const { foodManagementList, isLoading } = useFetchFootManagementList();
   const { foodDisplayList, addDisplayList, showMoreButton } =
-    useCreateFoodDisplayList(mockData);
+    useCreateFoodDisplayList(foodManagementList);
+
+  // TODO: ローディング処理
+  if (isLoading) {
+    return <>Loading...</>;
+  }
+
   return (
     <Box>
       <Accordion

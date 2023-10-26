@@ -1,4 +1,6 @@
-import { useCallback, useMemo, useState } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
+import { useQuery } from '@tanstack/react-query';
+import axios from 'axios';
 import { FoodManagement } from './types';
 import { ACCENT_COLOR, ERROR_COLOR, MAIN_COLOR } from '../../../../style';
 
@@ -39,6 +41,24 @@ export const selectColor = (level: 1 | 2 | 3): string => {
 };
 
 /**
+ * ホーム画面
+ * 食材管理リストを取得して返却するカスタムフック
+ */
+export const useFetchFootManagementList = () => {
+  const { data, isLoading } = useQuery({
+    queryKey: ['homeTest'],
+    queryFn: () =>
+      axios
+        .get<{ foodManagementList: FoodManagement[] }>(
+          'http://localhost:8000/food_management_list'
+        )
+        .then((res) => res.data),
+  });
+
+  return { foodManagementList: data?.foodManagementList || [], isLoading };
+};
+
+/**
  * 表示する食材管理リストを作成するカスタムフック
  *
  * @param foodList 全体の食材管理リスト
@@ -56,10 +76,13 @@ export const useCreateFoodDisplayList = (
   const INITIAL_LENGTH = 3;
   /** 追加表示件数 */
   const ADD_LENGTH = 10;
-  // 初期表示の3件をセットする
-  const [displayList, setDisplayList] = useState(
-    foodList.slice(0, INITIAL_LENGTH)
-  );
+  // 表示する食材管理リスト
+  const [displayList, setDisplayList] = useState<FoodManagement[]>([]);
+
+  useEffect(() => {
+    setDisplayList(foodList.slice(0, INITIAL_LENGTH));
+  }, [foodList]);
+
   /** 「もっと見る」の表示フラグ */
   const showMoreButton = useMemo(
     () => displayList.length < foodList.length,
