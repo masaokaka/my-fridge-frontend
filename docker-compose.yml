@@ -1,11 +1,11 @@
 version: '3.8'
 services:
   myfridge:
-    build:
-      context: . #Dockerfileの場所
-      dockerfile: Dockerfile #Dockerfileの名前
+    build: .
     volumes:
-      - ./src:/src # ローカルのsrc配下をコンテナ内から読み書き
+      - type: bind # バインドマウント（一行で書くとよくない）
+        source: ./src
+        target: /src
     ports:
       - 3000:3000
     stdin_open: true
