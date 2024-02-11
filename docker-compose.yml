@@ -1,6 +1,7 @@
 version: '3.8'
 services:
   myfridge:
+    container_name: myfridge-frontend
     build: .
     volumes:
       - type: bind # バインドマウント（一行で書くとよくない）
