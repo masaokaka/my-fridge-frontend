@@ -3,11 +3,15 @@ import { Button, ButtonProps, styled } from '@mui/material';
 type Props = ButtonProps;
 
 const StyledButton = styled(Button)(({ theme }) => ({
-  borderRadius: 24,
-  height: 45,
-  minWidth: 120,
+  borderRadius: '12px',
+  height: '40px',
+  minWidth: '120px',
   fontWeight: 'bold',
-  fontSize: 14,
+  fontSize: '14px',
+  boxShadow: 'none',
+  '&:hover': {
+    boxShadow: 'none',
+  },
   '&.MuiButton-outlinedSecondary': {
     backgroundColor: '#fff',
     '&:hover': {
@@ -16,8 +20,8 @@ const StyledButton = styled(Button)(({ theme }) => ({
     },
   },
   [theme.breakpoints.up('sm')]: {
-    height: 50,
-    fontSize: 16,
+    height: '45px',
+    fontSize: '16px',
   },
 }));
 /** 共通ボタン
@@ -42,6 +46,8 @@ const CustomButton = ({
     startIcon={startIcon}
     onClick={onClick}
     disabled={disabled}
+    disableRipple
+    disableTouchRipple
   >
     {children}
   </StyledButton>

@@ -7,9 +7,9 @@ import {
 } from 'react-hook-form';
 import {
   Box,
-  Button,
   Divider,
   IconButton,
+  InputLabel,
   Stack,
   Typography,
 } from '@mui/material';
@@ -19,6 +19,7 @@ import { CustomButton } from '../../uiParts/CustomButton';
 import GoogleAuthButtonImg from '../../../assets/google_sign_in_img.png';
 import { UserInfoType } from './types';
 import { validationRules } from './const';
+import { TEXT_COLOR } from '../../../style';
 
 type Props = {
   control: Control<UserInfoType>;
@@ -32,10 +33,21 @@ type Props = {
   showPassword: (param: 'password' | 'confirmationPassword') => void;
 };
 
-const FormLabelText = ({ children }: { children: ReactNode }) => (
-  <Typography ml={2} fontSize={14} fontWeight="bold">
-    {children}
-  </Typography>
+const FormLabelText = ({
+  children,
+  htmlFor,
+}: {
+  children: ReactNode;
+  htmlFor: string;
+}) => (
+  <InputLabel
+    htmlFor={htmlFor}
+    sx={{ mr: 'auto', '&:hover': { cursor: 'pointer' } }}
+  >
+    <Typography fontSize={16} fontWeight="bold" color={TEXT_COLOR}>
+      {children}
+    </Typography>
+  </InputLabel>
 );
 
 /**
@@ -62,60 +74,80 @@ const RegisterUserPresenter = ({
       gap={1}
       textAlign="left"
     >
-      <FormLabelText>ユーザー名</FormLabelText>
+      <FormLabelText htmlFor="username">ユーザー名</FormLabelText>
       <Controller
         name="username"
         control={control}
         rules={validationRules.username}
-        render={({ field, fieldState: { error } }) => (
+        render={({
+          field: { value, onChange, ref },
+          fieldState: { error },
+        }) => (
           <CustomTextField
+            id="username"
             placeholder="冷蔵庫太郎"
-            size="small"
             type="text"
-            {...field}
+            value={value}
+            onChange={onChange}
+            inputRef={ref}
             error={Boolean(error)}
             helperText={error?.message}
+            autoComplete="username"
           />
         )}
       />
-      <FormLabelText>メールアドレス</FormLabelText>
+      <FormLabelText htmlFor="email">メールアドレス</FormLabelText>
       <Controller
         name="email"
         control={control}
         rules={validationRules.email}
-        render={({ field, fieldState: { error } }) => (
+        render={({
+          field: { value, onChange, ref },
+          fieldState: { error },
+        }) => (
           <CustomTextField
+            id="email"
             placeholder="example@gmail.com"
-            size="small"
             type="email"
-            {...field}
+            value={value}
+            onChange={onChange}
+            inputRef={ref}
             error={Boolean(error)}
             helperText={error?.message}
+            autoComplete="email"
           />
         )}
       />
-      <FormLabelText>パスワード</FormLabelText>
+      <FormLabelText htmlFor="password">パスワード</FormLabelText>
       <Controller
         name="password"
         control={control}
         rules={validationRules.password}
-        render={({ field, fieldState: { error } }) => (
+        render={({
+          field: { value, onChange, ref },
+          fieldState: { error },
+        }) => (
           <CustomTextField
+            autoComplete="new-password"
+            id="password"
             placeholder="8文字以上、大文字、小文字、数字の組み合わせ"
-            size="small"
             type={canSeePassword.password ? 'text' : 'password'}
             icon={
               <IconButton onClick={() => showPassword('password')}>
                 {canSeePassword.password ? <VisibilityOff /> : <Visibility />}
               </IconButton>
             }
-            {...field}
+            value={value}
+            onChange={onChange}
+            inputRef={ref}
             error={Boolean(error)}
             helperText={error?.message}
           />
         )}
       />
-      <FormLabelText>パスワード（確認用）</FormLabelText>
+      <FormLabelText htmlFor="confirmationPassword">
+        パスワード（確認用）
+      </FormLabelText>
       <Controller
         name="confirmationPassword"
         control={control}
@@ -124,11 +156,18 @@ const RegisterUserPresenter = ({
           validate: (val) =>
             val === getValues('password') ?? 'パスワードが一致しません。',
         }}
-        render={({ field, fieldState: { error } }) => (
+        render={({
+          field: { value, onChange, ref },
+          fieldState: { error },
+        }) => (
           <CustomTextField
+            autoComplete="new-password"
+            id="confirmationPassword"
             placeholder="8文字以上、大文字、小文字、数字の組み合わせ"
-            size="small"
             type={canSeePassword.confirmationPassword ? 'text' : 'password'}
+            value={value}
+            onChange={onChange}
+            inputRef={ref}
             icon={
               <IconButton onClick={() => showPassword('confirmationPassword')}>
                 {canSeePassword.confirmationPassword ? (
@@ -138,7 +177,6 @@ const RegisterUserPresenter = ({
                 )}
               </IconButton>
             }
-            {...field}
             error={Boolean(error)}
             helperText={error?.message}
           />
@@ -151,18 +189,13 @@ const RegisterUserPresenter = ({
       </Box>
     </Stack>
     <Divider sx={{ width: '100%', my: { xs: 1, sm: 2 } }} />
-    <Button
-      type="button"
-      onClick={() => console.log('sign in with google')}
-      sx={{ width: '190px', p: 0 }}
-    >
-      <Box
-        height={{ xs: 35, sm: 45 }}
-        component="img"
-        alt="Sign in with Google"
-        src={GoogleAuthButtonImg}
-      />
-    </Button>
+    <Box
+      height={{ xs: 35, sm: 45 }}
+      component="img"
+      alt="Sign in with Google"
+      src={GoogleAuthButtonImg}
+      onClick={() => console.log('clicked')}
+    />
   </Box>
 );
 

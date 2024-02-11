@@ -1,5 +1,5 @@
 import { Suspense } from 'react';
-import { CircularProgress } from '@mui/material';
+import { Box, CircularProgress } from '@mui/material';
 import { Outlet } from 'react-router';
 import { PublicLayout } from '../components/uniqueParts/PublicLayout';
 import { lazyImport } from '../utils/lazyImport';
@@ -21,9 +21,9 @@ const App = () => (
   <PublicLayout>
     <Suspense
       fallback={
-        <div className="h-full w-full flex items-center justify-center">
+        <Box>
           <CircularProgress />
-        </div>
+        </Box>
       }
     >
       <Outlet />

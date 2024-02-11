@@ -1,22 +1,20 @@
-import { HTMLInputTypeAttribute, ReactNode } from 'react';
+import { ReactNode } from 'react';
 import {
-  IconButton,
   InputAdornment,
   TextField,
   TextFieldProps,
+  colors,
   styled,
 } from '@mui/material';
-import { WHITE_COLOR } from '../../../style';
 
 type Props = TextFieldProps & {
-  type?: HTMLInputTypeAttribute;
   icon?: ReactNode;
 };
 
 const StyledTextField = styled(TextField)(({ theme }) => ({
   [theme.breakpoints.up('sm')]: {},
   '& .MuiOutlinedInput-root': {
-    backgroundColor: WHITE_COLOR,
+    backgroundColor: colors.common.white,
   },
 }));
 /** 共通テキストフィールド
@@ -28,6 +26,7 @@ const StyledTextField = styled(TextField)(({ theme }) => ({
  * @param onClickIcon アイコンクリック時処理
  */
 const CustomTextField = ({
+  id,
   type,
   label,
   disabled,
@@ -37,14 +36,19 @@ const CustomTextField = ({
   error,
   placeholder,
   size,
+  autoComplete,
+  inputRef,
 }: Props) => (
   <StyledTextField
+    id={id}
     size={size}
     type={type}
     label={label}
     InputProps={{
-      sx: { borderRadius: 10, px: 1 },
-      endAdornment: <InputAdornment position="start">{icon}</InputAdornment>,
+      sx: { borderRadius: '12px' },
+      endAdornment: icon ? (
+        <InputAdornment position="end">{icon}</InputAdornment>
+      ) : undefined,
     }}
     placeholder={placeholder}
     variant="outlined"
@@ -54,6 +58,8 @@ const CustomTextField = ({
     fullWidth
     error={error}
     helperText={helperText}
+    autoComplete={autoComplete}
+    inputRef={inputRef}
   />
 );
 
