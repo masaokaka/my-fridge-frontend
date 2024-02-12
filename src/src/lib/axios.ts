@@ -1,7 +1,7 @@
-export default {};
-// import Axios, { AxiosRequestConfig } from 'axios';
+import Axios from 'axios';
+// { AxiosRequestConfig }
+import { API_URL } from '../config';
 
-// import { API_URL } from '../config';
 // import { useNotificationStore } from '../stores/notifications';
 // import storage from '../utils/storage';
 
@@ -14,9 +14,9 @@ export default {};
 //   return config;
 // }
 
-// export const axios = Axios.create({
-//   baseURL: API_URL,
-// });
+export const axios = Axios.create({
+  baseURL: API_URL,
+});
 
 // axios.interceptors.request.use(authRequestInterceptor);
 // axios.interceptors.response.use(
