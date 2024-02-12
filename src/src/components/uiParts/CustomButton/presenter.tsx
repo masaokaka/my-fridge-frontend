@@ -1,4 +1,5 @@
 import { Button, ButtonProps, styled } from '@mui/material';
+import { ACCENT_COLOR, MAIN_COLOR } from '../../../style';
 
 type Props = ButtonProps;
 
@@ -12,11 +13,20 @@ const StyledButton = styled(Button)(({ theme }) => ({
   '&:hover': {
     boxShadow: 'none',
   },
+  '&.MuiButton-outlinedPrimary': {
+    backgroundColor: '#fff',
+    '&:hover': {
+      // セカンダリーカラーのrgbが(239,125,60)
+      backgroundColor: MAIN_COLOR,
+      color: '#fff',
+    },
+  },
   '&.MuiButton-outlinedSecondary': {
     backgroundColor: '#fff',
     '&:hover': {
       // セカンダリーカラーのrgbが(239,125,60)
-      backgroundColor: 'rgba(239, 125, 60, 0.04)',
+      backgroundColor: ACCENT_COLOR,
+      color: '#fff',
     },
   },
   [theme.breakpoints.up('sm')]: {

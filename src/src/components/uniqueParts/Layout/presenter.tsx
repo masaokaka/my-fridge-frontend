@@ -77,7 +77,7 @@ const Layout = ({ children }: Props) => {
           >
             {children}
           </Container>
-          <Footer />
+          <Footer isPublicPage={false} />
           <BottomNavBar />
         </Box>
       </LayoutWrapper>

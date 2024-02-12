@@ -31,6 +31,7 @@ type Props = {
     confirmationPassword: boolean;
   };
   showPassword: (param: 'password' | 'confirmationPassword') => void;
+  serverError: string;
 };
 
 const FormLabelText = ({
@@ -62,6 +63,7 @@ const RegisterUserPresenter = ({
   getValues,
   canSeePassword,
   showPassword,
+  serverError,
 }: Props) => (
   <Box textAlign="center" width={{ xs: '100%', sm: '500px' }}>
     <Typography variant="h5" fontWeight="bold" mb={2}>
@@ -74,6 +76,11 @@ const RegisterUserPresenter = ({
       gap={1}
       textAlign="left"
     >
+      {serverError && (
+        <Typography color="error" fontWeight={600}>
+          {serverError}
+        </Typography>
+      )}
       <FormLabelText htmlFor="username">ユーザー名</FormLabelText>
       <Controller
         name="username"
@@ -189,13 +196,22 @@ const RegisterUserPresenter = ({
       </Box>
     </Stack>
     <Divider sx={{ width: '100%', my: { xs: 1, sm: 2 } }} />
-    <Box
-      height={{ xs: 35, sm: 45 }}
-      component="img"
-      alt="Sign in with Google"
-      src={GoogleAuthButtonImg}
-      onClick={() => console.log('clicked')}
-    />
+    <Box mb={2}>
+      <Box
+        height={{ xs: 35, sm: 45 }}
+        component="img"
+        alt="Sign in with Google"
+        src={GoogleAuthButtonImg}
+        onClick={() => console.log('clicked')}
+        sx={{
+          cursor: 'pointer',
+          transition: '0.3s',
+          '&:hover': {
+            filter: 'brightness(0.8)',
+          },
+        }}
+      />
+    </Box>
   </Box>
 );
 

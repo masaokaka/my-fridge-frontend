@@ -1,7 +1,16 @@
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
+import { useNavigate } from 'react-router';
+import { AxiosError } from 'axios';
+import sha512 from 'crypto-js/sha512';
+import Cookies from 'js-cookie';
 import RegisterUserPresenter from './presenter';
-import { UserInfoType } from './types';
+import {
+  RegisterUserAPIParamType,
+  RegisterUserAPIresponseType,
+  UserInfoType,
+} from './types';
+import { axios } from '../../../lib/axios';
 
 /**
  * 新規ユーザー登録画面
@@ -9,10 +18,12 @@ import { UserInfoType } from './types';
  * @returns コンポーネント
  */
 const RegisterUserContainer = () => {
+  const navigate = useNavigate();
   const [canSeePassword, setCanSeePassword] = useState({
     password: false,
     confirmationPassword: false,
   });
+  const [serverError, setServerError] = useState('');
   const { handleSubmit, control, getValues } = useForm<UserInfoType>({
     defaultValues: {
       username: '',
@@ -22,8 +33,28 @@ const RegisterUserContainer = () => {
     },
   });
   /** ユーザー登録API実行 */
-  const registerUser = ({ username, email, password }: UserInfoType) => {
-    console.log(username, email, password);
+  const registerUser = async ({
+    username,
+    email,
+    password,
+  }: RegisterUserAPIParamType) => {
+    const hashedPassword = sha512(password).toString();
+    try {
+      const { data } = await axios.post<RegisterUserAPIresponseType>(
+        '/account',
+        {
+          username,
+          email,
+          password: hashedPassword,
+        }
+      );
+      Cookies.set('sessionId', data.sessionId, { expires: 7 });
+      navigate('/');
+    } catch (error) {
+      if (error instanceof AxiosError) {
+        setServerError(error.message);
+      }
+    }
   };
   const showPassword = (param: 'password' | 'confirmationPassword') => {
     if (param === 'password') {
@@ -45,6 +76,7 @@ const RegisterUserContainer = () => {
     getValues,
     canSeePassword,
     showPassword,
+    serverError,
   };
   return <RegisterUserPresenter {...props} />;
 };
