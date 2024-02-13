@@ -6,7 +6,8 @@ import {
 
 export const loginHandlers = [
   rest.post<LoginAPIParamType>('/login', async (req, res, ctx) => {
-    const { username, password } = await req.json<LoginAPIParamType>();
+    const { username, password, rememberPassword } =
+      await req.json<LoginAPIParamType>();
     if (password && username) {
       return res(
         ctx.status(200),

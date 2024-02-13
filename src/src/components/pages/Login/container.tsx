@@ -25,15 +25,22 @@ const LoginContainer = () => {
     defaultValues: {
       username: '',
       password: '',
+      rememberPassword: false,
     },
   });
   /** ログインAPI実行 */
-  const login = async ({ username, password }: LoginAPIParamType) => {
+  const login = async ({
+    username,
+    password,
+    rememberPassword,
+  }: LoginAPIParamType) => {
+    // ! 認証周りのロジックについては後日対応する。
     const hashedPassword = sha512(password).toString();
     try {
       const { data } = await axios.post<LoginAPIResponseType>('login', {
         username,
         password: hashedPassword,
+        rememberPassword,
       });
       if (data.sessionId) {
         Cookies.set('sessionId', data.sessionId, { expires: 7 });
