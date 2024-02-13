@@ -5,3 +5,6 @@ setupTests.ts
 .eslintrc.js
 service-worker.ts
 serviceWorkerRegistration.ts
+vite.config.ts
+*.d.ts
+mockServiceWorker.js
