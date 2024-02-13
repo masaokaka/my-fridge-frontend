@@ -45,7 +45,7 @@ export const publicRoutes = [
         element: <ResetPassword />,
       },
       {
-        path: '*',
+        path: '/',
         element: <Login />,
       },
     ],

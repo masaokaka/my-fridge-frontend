@@ -13,7 +13,7 @@ import {
   Stack,
   Typography,
 } from '@mui/material';
-import { Edit, Visibility, VisibilityOff } from '@mui/icons-material';
+import { PersonAdd, Visibility, VisibilityOff } from '@mui/icons-material';
 import { CustomTextField } from '../../uiParts/CustomTextField';
 import { CustomButton } from '../../uiParts/CustomButton';
 import GoogleAuthButtonImg from '../../../assets/google_sign_in_img.png';
@@ -24,7 +24,7 @@ import { TEXT_COLOR } from '../../../style';
 type Props = {
   control: Control<UserInfoType>;
   handleSubmit: UseFormHandleSubmit<UserInfoType, undefined>;
-  registerUser: (data: UserInfoType) => void;
+  registerUser: (data: UserInfoType) => Promise<void>;
   getValues: UseFormGetValues<UserInfoType>;
   canSeePassword: {
     password: boolean;
@@ -65,9 +65,9 @@ const RegisterUserPresenter = ({
   showPassword,
   serverError,
 }: Props) => (
-  <Box textAlign="center" width={{ xs: '100%', sm: '500px' }}>
+  <Box textAlign="center" width={{ xs: '100%', sm: '500px' }} my="auto">
     <Typography variant="h5" fontWeight="bold" mb={2}>
-      新規登録
+      ユーザー登録
     </Typography>
     <Stack
       component="form"
@@ -76,11 +76,6 @@ const RegisterUserPresenter = ({
       gap={1}
       textAlign="left"
     >
-      {serverError && (
-        <Typography color="error" fontWeight={600}>
-          {serverError}
-        </Typography>
-      )}
       <FormLabelText htmlFor="username">ユーザー名</FormLabelText>
       <Controller
         name="username"
@@ -189,9 +184,18 @@ const RegisterUserPresenter = ({
           />
         )}
       />
+      {serverError && (
+        <Typography color="error" fontWeight={600}>
+          {serverError}
+        </Typography>
+      )}
       <Box mt={1} textAlign="center">
-        <CustomButton variant="contained" startIcon={<Edit />} type="submit">
-          新規登録
+        <CustomButton
+          variant="contained"
+          startIcon={<PersonAdd />}
+          type="submit"
+        >
+          登録
         </CustomButton>
       </Box>
     </Stack>
