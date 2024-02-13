@@ -41,17 +41,20 @@ const RegisterUserContainer = () => {
     const hashedPassword = sha512(password).toString();
     try {
       const { data } = await axios.post<RegisterUserAPIresponseType>(
-        '/account',
+        'account',
         {
           username,
           email,
           password: hashedPassword,
         }
       );
-      Cookies.set('sessionId', data.sessionId, { expires: 7 });
+      if (data.sessionId) {
+        Cookies.set('sessionId', data.sessionId, { expires: 7 });
+      }
       navigate('/');
     } catch (error) {
       if (error instanceof AxiosError) {
+        console.log(error);
         setServerError(error.message);
       }
     }

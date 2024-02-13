@@ -15,7 +15,7 @@ import { API_URL } from '../config';
 // }
 
 export const axios = Axios.create({
-  baseURL: API_URL,
+  baseURL: import.meta.env.MODE === 'development' ? undefined : API_URL,
 });
 
 // axios.interceptors.request.use(authRequestInterceptor);
