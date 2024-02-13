@@ -9,7 +9,6 @@ export type LoginAPIParamType = {
 };
 
 export type LoginAPIResponseType = {
-  fridgeExists: boolean;
   sessionId: string;
   userId: string;
   username: string;

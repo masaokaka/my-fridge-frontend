@@ -31,7 +31,7 @@ const LoginContainer = () => {
   const login = async ({ username, password }: LoginAPIParamType) => {
     const hashedPassword = sha512(password).toString();
     try {
-      const { data } = await axios.post<LoginAPIResponseType>('account', {
+      const { data } = await axios.post<LoginAPIResponseType>('login', {
         username,
         password: hashedPassword,
       });
