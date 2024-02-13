@@ -11,7 +11,7 @@ export type RegisterUserAPIParamType = {
   password: string;
 };
 
-export type RegisterUserAPIresponseType = {
+export type RegisterUserAPIResponseType = {
   fridgeExists: boolean;
   sessionId: string;
   userId: string;

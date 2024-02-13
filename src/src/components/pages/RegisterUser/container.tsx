@@ -7,7 +7,7 @@ import Cookies from 'js-cookie';
 import RegisterUserPresenter from './presenter';
 import {
   RegisterUserAPIParamType,
-  RegisterUserAPIresponseType,
+  RegisterUserAPIResponseType,
   UserInfoType,
 } from './types';
 import { axios } from '../../../lib/axios';
@@ -40,7 +40,7 @@ const RegisterUserContainer = () => {
   }: RegisterUserAPIParamType) => {
     const hashedPassword = sha512(password).toString();
     try {
-      const { data } = await axios.post<RegisterUserAPIresponseType>(
+      const { data } = await axios.post<RegisterUserAPIResponseType>(
         'account',
         {
           username,

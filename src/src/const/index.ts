@@ -19,3 +19,7 @@ export const FOOTER_HEIGHT_MOBILE = 50;
 export const BOTTOM_NAV_HEIGHT = 80;
 export const PUBLIC_HEADER_HEIGHT_PC = 80;
 export const PUBLIC_HEADER_HEIGHT_MOBILE = 60;
+
+export const PASSWORD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/;
+export const EMAIL_REGEX =
+  /^[a-zA-Z0-9_.+-]+@([a-zA-Z0-9][a-zA-Z0-9-]*[a-zA-Z0-9]*\.)+[a-zA-Z]{2,}$/;

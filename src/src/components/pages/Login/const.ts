@@ -1,4 +1,4 @@
-import { EMAIL_REGEX, PASSWORD_REGEX } from '../../../const';
+import { PASSWORD_REGEX } from '../../../const';
 
 export const validationRules = {
   username: {
@@ -7,16 +7,6 @@ export const validationRules = {
       message: '入力は必須です。',
     },
     max: { value: 24, message: '24文字以内で入力してください。' },
-  },
-  email: {
-    required: {
-      value: true,
-      message: '入力は必須です。',
-    },
-    pattern: {
-      value: EMAIL_REGEX,
-      message: '正しい形式で入力してください。',
-    },
   },
   password: {
     required: {

@@ -1,7 +1,7 @@
 import { useMemo } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { Box, Container, styled, AppBar, Toolbar } from '@mui/material';
-import { Login, Edit } from '@mui/icons-material';
+import { Login, PersonAdd } from '@mui/icons-material';
 import {
   PUBLIC_HEADER_HEIGHT_MOBILE,
   PUBLIC_HEADER_HEIGHT_PC,
@@ -60,11 +60,11 @@ const PublicHeader = () => {
           </Box>
           <Box>
             <CustomButton
-              startIcon={<Edit />}
+              startIcon={<PersonAdd />}
               variant="contained"
               onClick={() => navigate('./register')}
             >
-              新規登録
+              ユーザー登録
             </CustomButton>
           </Box>
         </>
@@ -74,11 +74,11 @@ const PublicHeader = () => {
       return (
         <Box>
           <CustomButton
-            startIcon={<Edit />}
+            startIcon={<PersonAdd />}
             variant="contained"
             onClick={() => navigate('./register')}
           >
-            新規登録
+            ユーザー登録
           </CustomButton>
         </Box>
       );
